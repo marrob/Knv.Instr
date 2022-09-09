@@ -1,0 +1,11 @@
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\bin\Debug\TestStandOPI.exe.config
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\bin\Debug\TestStandOPI.exe
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\bin\Debug\TestStandOPI.pdb
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.csproj.AssemblyReference.cache
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.csproj.SuggestedBindingRedirects.cache
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.MainForm.resources
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.Properties.Resources.resources
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.csproj.GenerateResource.cache
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.csproj.CoreCompileInputs.cache
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.exe
+C:\Users\Margit Robert\Documents\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.pdb

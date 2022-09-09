@@ -4,6 +4,7 @@
 /NG100/NG100Lib/obj/
 /NG100/NG100VCP/bin/
 /NG100/NG100VCP/obj/
+*.xml
 .vs/
 *.suo
 .vs/Konvolucio.MCAN120803_VS2015/v14/.suo
