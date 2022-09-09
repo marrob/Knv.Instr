@@ -18,10 +18,11 @@ namespace N6972A
         {        
             InstrIp = new IPEndPoint(IPAddress.Parse(instrIPAddress), instrPortNo);
             InstrSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            InstrSocket.ReceiveTimeout = 1000;
             try
             {
                 if (!InstrSocket.Connected)
-                    InstrSocket.Connect(this.InstrIp);
+                    InstrSocket.Connect(InstrIp);
             }
             catch (SocketException e)
             {
@@ -30,9 +31,15 @@ namespace N6972A
             }
         }
 
-        public string WriteReadLine(string command)
+
+        public void WriteLine(string cmd)
         {
-            InstrSocket.Send(Encoding.ASCII.GetBytes(command + "\n"));
+            InstrSocket.Send(Encoding.ASCII.GetBytes(cmd + "\n"));
+        }
+
+        public string WriteReadLine(string cmd)
+        {
+            WriteLine(cmd);
             byte[] data = new byte[1024];
             int receivedDataLength = InstrSocket.Receive(data);
             return Encoding.ASCII.GetString(data, 0, receivedDataLength).Trim();
