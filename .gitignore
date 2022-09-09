@@ -4,6 +4,13 @@
 /NG100/NG100Lib/obj/
 /NG100/NG100VCP/bin/
 /NG100/NG100VCP/obj/
+/NUnitSampleApp/bin/
+/NUnitSampleApp/obj/
+/N6972A/bin/
+/N6972A/obj/
+/TestStandOPI/bin/
+/TestStandOPI/obj/
+/packages/
 *.xml
 .vs/
 *.suo

@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NG100VCP", "NG100\NG100VCP\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestStandOPI", "TestStandOPI\TestStandOPI.csproj", "{619CE7F5-476B-4D4E-9B9C-1BF5602655FC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "N6972A_LAN", "N6972A\N6972A_LAN.csproj", "{BDC6C8DD-C00C-4C31-87FF-65DC12814BAE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitSampleApp", "NUnitSampleApp\NUnitSampleApp.csproj", "{4F9A6A22-126C-4BEB-B21C-E90FEA9EBADF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{619CE7F5-476B-4D4E-9B9C-1BF5602655FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{619CE7F5-476B-4D4E-9B9C-1BF5602655FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{619CE7F5-476B-4D4E-9B9C-1BF5602655FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDC6C8DD-C00C-4C31-87FF-65DC12814BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDC6C8DD-C00C-4C31-87FF-65DC12814BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDC6C8DD-C00C-4C31-87FF-65DC12814BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDC6C8DD-C00C-4C31-87FF-65DC12814BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F9A6A22-126C-4BEB-B21C-E90FEA9EBADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F9A6A22-126C-4BEB-B21C-E90FEA9EBADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F9A6A22-126C-4BEB-B21C-E90FEA9EBADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F9A6A22-126C-4BEB-B21C-E90FEA9EBADF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
