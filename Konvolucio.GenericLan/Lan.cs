@@ -99,6 +99,7 @@ namespace Konvolucio.PsuOverLan
         {
             try
             {
+                InstrSocket.Close();
                 LogWirteLine($"CLOSE:{InstrIp.Address}:{InstrIp.Port}");
             }
             catch (Exception ex)

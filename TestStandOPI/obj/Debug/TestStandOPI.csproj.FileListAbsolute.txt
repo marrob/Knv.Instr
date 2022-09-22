@@ -20,3 +20,14 @@ D:\@@@!ProjectS\KonvolucioApp\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.cs
 D:\@@@!ProjectS\KonvolucioApp\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.csproj.CoreCompileInputs.cache
 D:\@@@!ProjectS\KonvolucioApp\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.exe
 D:\@@@!ProjectS\KonvolucioApp\MeasDevices\TestStandOPI\obj\Debug\TestStandOPI.pdb
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\bin\Debug\TestStandOPI.exe.config
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\bin\Debug\TestStandOPI.exe
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\bin\Debug\TestStandOPI.pdb
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.csproj.AssemblyReference.cache
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.csproj.SuggestedBindingRedirects.cache
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.MainForm.resources
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.Properties.Resources.resources
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.csproj.GenerateResource.cache
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.csproj.CoreCompileInputs.cache
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.exe
+D:\@@@!ProjectS\KonvolucioApp\Measurements\TestStandOPI\obj\Debug\TestStandOPI.pdb

@@ -9,32 +9,33 @@ using System.Diagnostics;
 namespace Konvolucio.PsuOverLan
 {
     [TestFixture]
-    public class PsuOverLan_UnitTest
+    public class N6972A_UnitTest
     {
-        Lan _psp;
+        Lan PSU;
 
         [SetUp]
-        public void TestSetup(){
-            _psp = new Lan();
-            _psp.Open("192.168.1.101", 5025);
+        public void TestSetup()
+        {
+            PSU = new Lan();
+            PSU.Open("192.168.1.101", 5025);
         }
 
 
         [Test]
         public void PowerSupplyIDN() {
 
-            var response = _psp.WriteReadLine("*IDN?");
+            var response = PSU.WriteReadLine("*IDN?");
             Assert.AreEqual("Agilent Technologies,N6972A,MY59170474,B.02.03.1268", response);
         }
 
         [Test]
         public void IncraseOutputVoltage(){
 
-            _psp.WriteLine($"VOLT 0");
+            PSU.WriteLine($"VOLT 0");
             double volts = 0;
             for (int i = 0; i < 79; i++)
             {
-                _psp.WriteLine($"VOLT {volts}");
+                PSU.WriteLine($"VOLT {volts}");
                 volts += 0.5;
                 System.Threading.Thread.Sleep(500);
             }
@@ -43,9 +44,9 @@ namespace Konvolucio.PsuOverLan
         [Test]
         public void SetVoltAndEnableOutput()
         {
-            _psp.WriteLine($"VOLT 10");
-            _psp.WriteLine("OUTP ON");
-            Assert.AreEqual(10, double.Parse(_psp.WriteReadLine("VOLT?")));
+            PSU.WriteLine($"VOLT 10");
+            PSU.WriteLine("OUTP ON");
+            Assert.AreEqual(10, double.Parse(PSU.WriteReadLine("VOLT?")));
         }
 
 
@@ -54,17 +55,17 @@ namespace Konvolucio.PsuOverLan
         {
             var sw = new Stopwatch();
 
-            _psp.WriteLine("OUTP ON");
-            _psp.WriteLine($"VOLT 0");
+            PSU.WriteLine("OUTP ON");
+            PSU.WriteLine($"VOLT 0");
             double volts = 0;
             do{
-                volts = double.Parse(_psp.WriteReadLine("VOLT?"));
+                volts = double.Parse(PSU.WriteReadLine("VOLT?"));
             } while (volts > 0.1);
             sw.Start();
 
-            _psp.WriteLine($"VOLT 40");
+            PSU.WriteLine($"VOLT 40");
             do{
-                volts = double.Parse(_psp.WriteReadLine("VOLT?"));
+                volts = double.Parse(PSU.WriteReadLine("VOLT?"));
             } while (volts < 39.9);
             sw.Stop();
 
@@ -78,20 +79,20 @@ namespace Konvolucio.PsuOverLan
         {
             var sw = new Stopwatch();
 
-            _psp.WriteLine("OUTP ON");
-            _psp.WriteLine($"VOLT 40");
+            PSU.WriteLine("OUTP ON");
+            PSU.WriteLine($"VOLT 40");
             System.Threading.Thread.Sleep(2000);
             double volts = 0;
             do
             {
-                volts = double.Parse(_psp.WriteReadLine("VOLT?"));
+                volts = double.Parse(PSU.WriteReadLine("VOLT?"));
             } while (volts < 39.9);
             sw.Start();
 
-            _psp.WriteLine($"VOLT 0");
+            PSU.WriteLine($"VOLT 0");
             do
             {
-                volts = double.Parse(_psp.WriteReadLine("VOLT?"));
+                volts = double.Parse(PSU.WriteReadLine("VOLT?"));
             } while (volts > 0.1);
             sw.Stop();
 

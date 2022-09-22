@@ -55,8 +55,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="N6972A_UnitTest.cs" />
     <Compile Include="Lan.cs" />
-    <Compile Include="PsuOverLan_UnitTest.cs" />
+    <Compile Include="SDG2042X_UnitTest.cs" />
+    <Compile Include="DMM6500_UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
