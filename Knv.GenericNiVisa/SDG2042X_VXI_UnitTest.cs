@@ -22,7 +22,7 @@ namespace Knv.Instruments.GenericNiVisa
      * C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v2.0.50727\VISA.NET Shared Components 5.11.0\Ivi.Visa.dll
      */
     using Ivi.Visa;
-
+    using System.Runtime.Remoting.Messaging;
 
     [TestFixture]
     internal class SDG2042X_VXI_UnitTest
@@ -35,7 +35,7 @@ namespace Knv.Instruments.GenericNiVisa
         }
 
         [Test]
-        public void GetTcpResources() 
+        public void SDG2042X_OverUSB() 
         {
             List<string> devices = new List<string>();
             using (var rm = new ResourceManager())
@@ -48,6 +48,32 @@ namespace Knv.Instruments.GenericNiVisa
                 }
             }
             Assert.IsTrue(devices.Count != 0);
+        }
+
+        [Test]
+        public void GetUsbResources()
+        {
+            ///USB0::0xF4EC::0xEE38::SDG2XCA4162310::INSTR
+            List<string> devices = new List<string>();
+            using (var rm = new ResourceManager())
+            {
+                IEnumerable<string> resources = rm.Find("USB?*");
+                foreach (string s in resources)
+                {
+                    ParseResult parseResult = rm.Parse(s);
+                    devices.Add($"{s}");
+                }
+            }
+            Assert.IsTrue(devices.Count != 0);
+            MessageBasedSession mbSession;
+            using (var rmSession = new ResourceManager())
+            {
+                mbSession = (MessageBasedSession)rmSession.Open(devices[0]);
+            }
+            mbSession.RawIO.Write("*IDN?\n");
+            var response = mbSession.RawIO.ReadString();
+            Assert.AreEqual("Siglent Technologies,SDG2042X,SDG2XCA4162310,2.01.01.35R3B2\n", response);
+            mbSession.Dispose();
         }
 
 
