@@ -61,10 +61,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Daq\Daq.cs" />
     <Compile Include="Daq\DaqTools.cs" />
-    <Compile Include="Daq\DaqUnitTest.cs" />
+    <Compile Include="Daq\Daq_UnitTest.cs" />
+    <Compile Include="Daq\SignalGenerator.cs" />
     <Compile Include="DMM.cs" />
-    <Compile Include="ELoad.cs" />
+    <Compile Include="Eload\ELoad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PSU.cs" />
   </ItemGroup>

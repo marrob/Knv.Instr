@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instruments", "Knv.Instruments\Knv.Instruments.csproj", "{DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instruments.GenericNiVisa", "Knv.GenericNiVisa\Knv.Instruments.GenericNiVisa.csproj", "{16B4C996-F1BD-41B6-A8B4-50C27A0F747E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16B4C996-F1BD-41B6-A8B4-50C27A0F747E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16B4C996-F1BD-41B6-A8B4-50C27A0F747E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16B4C996-F1BD-41B6-A8B4-50C27A0F747E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16B4C996-F1BD-41B6-A8B4-50C27A0F747E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

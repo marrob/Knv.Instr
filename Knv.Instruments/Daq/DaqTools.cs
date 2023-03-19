@@ -21,21 +21,56 @@
  */
 namespace Knv.Instruments.Daq
 {
+
     using NationalInstruments.DAQmx;
-    public class DaqTools
+    using System;
+
+    public static class DaqTools
     {
-        public static double GetOneVolt(string device, string channel)
+        public static bool IsSimualtion { get; set; } = false;
+
+
+        /// <summary>
+        /// Beolvas egy analog bemenetet
+        /// A kártya pl lehet NI PCIe-6353
+        /// </summary>
+        /// <param name="deviceName">pl:Dev1 ezt a MAX-ban találod meg </param>
+        /// <param name="channel">pl: "ai0" </param>
+        /// <returns></returns>
+        public static double AIgetOneVolt(string deviceName, string channel)
         {
             double retval = 0;
-            using (var myTask = new NationalInstruments.DAQmx.Task())
+            if (!IsSimualtion)
             {
-                string physicalChannel = $"{device}/{channel}";
-                myTask.AIChannels.CreateVoltageChannel(physicalChannel, "", (AITerminalConfiguration)(-1), -10, 10, AIVoltageUnits.Volts);
-                AnalogMultiChannelReader reader = new AnalogMultiChannelReader(myTask.Stream);
-                myTask.Control(TaskAction.Verify);
-                retval = reader.ReadSingleSample()[0];
+                using (var myTask = new Task())
+                {
+                    string physicalChannel = $"{deviceName}/{channel}";
+                    myTask.AIChannels.CreateVoltageChannel(physicalChannel, "aiChannel", (AITerminalConfiguration)(-1), -10, 10, AIVoltageUnits.Volts);
+                    AnalogMultiChannelReader reader = new AnalogMultiChannelReader(myTask.Stream);
+                    myTask.Control(TaskAction.Verify);
+                    retval = reader.ReadSingleSample()[0];
+                }
+            }
+            else
+            {
+                Random rnd = new Random();
+                retval = rnd.Next(-10, 10);
             }
             return retval;
+        }
+
+        public static void AOsetVoltage(string deviceName, string channel, double voltage) 
+        {
+            if (IsSimualtion)
+                return;
+
+            using (var myTask = new Task())
+            {
+                string physicalChannel = $"{deviceName}/{channel}";
+                myTask.AOChannels.CreateVoltageChannel(physicalChannel, "aoChannel", -10, 10, AOVoltageUnits.Volts);
+                var writer = new AnalogSingleChannelWriter(myTask.Stream);
+                writer.WriteSingleSample(true, voltage);
+            }
         }
     }
 }
