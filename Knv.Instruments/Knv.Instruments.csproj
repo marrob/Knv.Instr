@@ -61,7 +61,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Daq\Daq.cs" />
     <Compile Include="Daq\DaqTools.cs" />
     <Compile Include="Daq\Daq_UnitTest.cs" />
     <Compile Include="Daq\SignalGenerator.cs" />

@@ -24,11 +24,20 @@ namespace Knv.Instruments.Daq
 
     using NationalInstruments.DAQmx;
     using System;
+    using System.Linq;
 
     public static class DaqTools
     {
         public static bool IsSimualtion { get; set; } = false;
 
+
+        public static bool DeviceIsPresent(string deviceName)
+        {
+            bool retval = false;
+            var devs = DaqSystem.Local.Devices;
+            retval = devs.Contains(deviceName);
+            return retval;
+        }
 
         /// <summary>
         /// Beolvas egy analog bemenetet
@@ -59,6 +68,14 @@ namespace Knv.Instruments.Daq
             return retval;
         }
 
+        /// <summary>
+        /// Beállít egy feszültséget egy analóg kimeneten
+        /// Kártya pl lehet NI PCIe-6353, ezen kettő db Analog Out csatorna van: ao0 és ao1
+        /// A beállított feszültség a kötkező beállításig vagy újraidnitásig a kiementen van! 
+        /// </summary>
+        /// <param name="deviceName"></param>
+        /// <param name="channel"></param>
+        /// <param name="voltage"></param>
         public static void AOsetVoltage(string deviceName, string channel, double voltage) 
         {
             if (IsSimualtion)

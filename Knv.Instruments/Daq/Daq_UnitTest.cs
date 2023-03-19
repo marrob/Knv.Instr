@@ -12,6 +12,12 @@ namespace Knv.Instruments.Daq
     [TestFixture]
     internal class Daq_UnitTest
     {
+        [Test]
+        public void DeviceIsPresent()
+        {
+            Assert.IsTrue(DaqTools.DeviceIsPresent("Dev1"));  
+        }
+
 
         [Test]
         public void GetOneVoltage()
@@ -28,8 +34,34 @@ namespace Knv.Instruments.Daq
             DaqTools.AOsetVoltage("Dev1", "ao0", value);
         }
 
+        [Test]
+        public void SignalGenerator0()
+        {
+            using (var sg1 = new SignalGenerator("Dev1"))
+            {
 
-     
+                sg1.Start("ao0");
+                System.Threading.Thread.Sleep(100000);
+                sg1.Stop();
 
+            }
+        }
+
+        [Test]
+        public void SignalGenerator()
+        {
+            using (var sg1 = new SignalGenerator("Dev1"))
+            {
+                using (var sg2 = new SignalGenerator("Dev1"))
+                {
+                    sg1.Start("ao0");
+                    sg2.Start("ao1");
+                    System.Threading.Thread.Sleep(100000);
+                    sg1.Stop();
+                    sg2.Stop();
+
+                }
+            }
+        }
     }
 }
