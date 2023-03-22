@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Daq\DaqTools.cs" />
+    <Compile Include="Daq\SignalGen_UnitTest.cs" />
     <Compile Include="Daq\Daq_UnitTest.cs" />
     <Compile Include="Daq\SignalGenerator.cs" />
     <Compile Include="DMM.cs" />
