@@ -61,7 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Tools.cs" />
     <Compile Include="Daq\DaqTools.cs" />
+    <Compile Include="Daq\SignalGen_AO0_AO1_UnitTest.cs" />
     <Compile Include="Daq\SignalGen_UnitTest.cs" />
     <Compile Include="Daq\Daq_UnitTest.cs" />
     <Compile Include="Daq\SignalGenerator.cs" />
