@@ -7,10 +7,10 @@ namespace Knv.Instruments.Daq
     using NationalInstruments.DAQmx;
 
     [TestFixture]
-    internal class SignalGen_UnitTest
+    internal class SignalGen
     {
         [Test]
-        public void DeviceIsPresent()
+        public void SineWave_AO_PCI_6353()
         {
             var myTask = new Task();
             myTask.AOChannels.CreateVoltageChannel("Dev1/ao0", "aoChannel", -10, 10, AOVoltageUnits.Volts);
@@ -19,10 +19,12 @@ namespace Knv.Instruments.Daq
             Timing timing = myTask.Timing;
             timing.SampleTimingType = SampleTimingType.SampleClock;
 
-            double requiredFreq = 100000;
-            int samples = 40;
+            double requiredFreq = 50;
+            int samples = 256;
             double amp = 4;
 
+
+            //Ez hozza létre a bufferben a jel alakját
             double samplingClockRate = requiredFreq * samples;
             double[] samplesBuffer = new double[samples];
             double deltaT = 1 / samplingClockRate;
@@ -54,7 +56,7 @@ namespace Knv.Instruments.Daq
                 * FiniteSamples: 1x kiküldi a buffer tartalmát és vége (több periódus is lehet a bufferben)
                 * ContinuousSamples: folyamatosan küldi a buffer tartalamát amíg Task.Stop be nem következik
                 */
-               sampleMode: SampleQuantityMode.ContinuousSamples,
+               sampleMode: SampleQuantityMode.FiniteSamples,
 
                samplesPerChannel: samples);
 
@@ -79,11 +81,28 @@ namespace Knv.Instruments.Daq
 
             myTask.Done += (o, e) =>
             {
-                myTask.Dispose();
+               // myTask.Dispose();
+
+              /*
+               * Ezt a myTask.Stop() váltja ki 
+               */
+
             };
 
+            /*
+             * Ha manuális a trigger, akkor minden Start után lefut a buffer tartalma, ha  SampleQuantityMode.FiniteSamples
+             * A Stop-ot mindig ki kell adni Start előtt egyébként HIBA
+             * 
+             * IDE TEGYÉL TÖRÉSPONTOT
+             */
             myTask.Start();
 
+            System.Threading.Thread.Sleep(1000);
+
+            /*
+             *A Stop hívása váltja ki MyTask.Done esményt!
+             * 
+             */
             myTask.Stop();
 
             if (myTask != null)
