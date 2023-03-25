@@ -3,7 +3,6 @@ Archive
 *.xml
 .vs/
 *.suo
-.vs/Konvolucio.MCAN120803_VS2015/v14/.suo
 /*/bin
 /*/obj
 TSreport
