@@ -31,29 +31,22 @@ namespace Knv.Instr.PSU.RMX4104
 
             Write("*RST;");
             Write(":SYST:ERR:ENAB;");
-            System.Threading.Thread.Sleep(20);
-
         }
 
         public string Identify()
         {
-            var wtf = Query("*IDN?");
-            return wtf;
+            var resp = Query("*IDN?");
+            return resp;
         }
-
 
         public void SetOutput(double volt, double current)
         {
-            string request = $":VOLT {volt:g}; :CURR {current:g};";
-            Write(request);
+            Write($":VOLT {volt:g}; :CURR {current:g};");
         }
 
         public void SetOutput(double volt, double current, bool onOff)
         {
             Write($":VOLT {volt:g};:CURR {current:g};:OUTP:STAT {(onOff ? "ON" : "OFF")};");
-            //Write($":VOLT {volt:g};");
-            //Write($":CURR {current:g};");
-            //Write($":OUTP:STAT {(onOff ? "ON" : "OFF")};");
         }
 
         public double SetOutputGetActualVolt(double volt, double current)
