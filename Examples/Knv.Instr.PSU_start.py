@@ -13,5 +13,12 @@ import os
 #
 seqEditPath = r"C:\Program Files (x86)\National Instruments\TestStand 2019\Bin\SeqEdit.exe"
 sequencePath = fr"{os.getcwd()}\Knv.Instr.PSU.seq"
-tsenvPath = fr"{os.getcwd()}\Instr.tsenv"
-os.startfile(seqEditPath, arguments = f"{sequencePath} /env {tsenvPath}")
+tsenvPath = fr'{os.getcwd()}\Instr.tsenv'
+os.startfile(seqEditPath, arguments = f'"{sequencePath}" /env "{tsenvPath}"')
+
+print(f"Working directory:{os.getcwd()}")
+print(f"Sequence:'{sequencePath}'")
+
+print(f'{sequencePath} /env "{tsenvPath}"')
+
+input()
