@@ -4,6 +4,8 @@
  * Assembly NationalInstruments.Common:
  * C:\Program Files (x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common 19.1.40
  * 
+ * 
+ * Ehhez telepíteni kell az NI-488.2 és a .NET supportot is.
  * NationalInstruments.NI4882: 
  * C:\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies\Current\NationalInstruments.NI4882.dll
  * 

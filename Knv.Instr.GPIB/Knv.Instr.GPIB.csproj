@@ -62,8 +62,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GPIB_Basic_UnitTest.cs" />
-    <Compile Include="HP6634A_PSU.cs" />
-    <Compile Include="HP6634A_PSU_UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
