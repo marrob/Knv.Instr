@@ -12,6 +12,9 @@
  */
 namespace Knv.Instr.PSU.HP6634A
 {
+    /*C:\Program Files(x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common 19.1.40\NationalInstruments.Common.dll*/
+    using NationalInstruments;
+    /*C:\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies\Current\NationalInstruments.NI4882.dll*/
     using NationalInstruments.NI4882;
     using System;
 
@@ -84,7 +87,6 @@ namespace Knv.Instr.PSU.HP6634A
             _device.Write($"{request}\r\n");
             LogWriteLine($"Tx:{request}");
         }
-
 
         public void Dispose()
         {

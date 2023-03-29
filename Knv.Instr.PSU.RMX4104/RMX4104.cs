@@ -4,6 +4,9 @@ namespace Knv.Instr.PSU.RMX4104
 {
 
     using System;
+    /* C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v2.0.50727\VISA.NET Shared Components 5.11.0\Ivi.Visa.dll*/
+    using Ivi.Visa;
+    /* C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v4.0.30319\NI VISA.NET 19.0\NationalInstruments.Visa.dll*/
     using NationalInstruments.Visa;
     public class RMX4104 : Log, IPowerSupply, IDisposable
     {
@@ -83,12 +86,10 @@ namespace Knv.Instr.PSU.RMX4104
             return response; 
         }
 
-        public string Write(string request)
+        public void Write(string request)
         {
             LogWriteLine($"Tx:{request}");
             _session.RawIO.Write(request + "\n");
-            var response = _session.RawIO.ReadString();
-            return response;
         }
 
         public void Dispose()

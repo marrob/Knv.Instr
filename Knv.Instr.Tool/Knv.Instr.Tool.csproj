@@ -128,9 +128,17 @@
     <Folder Include="UnitTest\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Knv.Instr.DMM.KEI2100\Knv.Instr.DMM.KEI2100.csproj">
+      <Project>{56cdc6fc-e4c4-4e0f-befc-8893f4e623a0}</Project>
+      <Name>Knv.Instr.DMM.KEI2100</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Knv.Instr.PSU.HP6634\Knv.Instr.PSU.HP6634.csproj">
       <Project>{c79cd010-e263-4ac6-adf8-a60bba92dde2}</Project>
       <Name>Knv.Instr.PSU.HP6634</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Knv.Instr.PSU.RMX4104\Knv.Instr.PSU.RMX4104.csproj">
+      <Project>{501f658a-baf9-4849-8787-a638d8afc335}</Project>
+      <Name>Knv.Instr.PSU.RMX4104</Name>
     </ProjectReference>
     <ProjectReference Include="..\Knv.Instr\Knv.Instr.csproj">
       <Project>{dba5fa64-f769-4cbe-b77e-c3a7e5ad8fcb}</Project>

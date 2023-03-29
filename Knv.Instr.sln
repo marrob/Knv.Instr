@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instr.PSU.RMX4104", "Kn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instr.Tool", "Knv.Instr.Tool\Knv.Instr.Tool.csproj", "{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instr.DMM.KEI2100", "Knv.Instr.DMM.KEI2100\Knv.Instr.DMM.KEI2100.csproj", "{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,14 @@ Global
 		{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}.Release|x86.ActiveCfg = Release|Any CPU
 		{8D63D1E5-D0E4-4080-8299-FC3FAF5F404B}.Release|x86.Build.0 = Release|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Debug|x86.Build.0 = Debug|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Release|x86.ActiveCfg = Release|Any CPU
+		{56CDC6FC-E4C4-4E0F-BEFC-8893F4E623A0}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
