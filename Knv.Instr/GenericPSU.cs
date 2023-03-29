@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Knv.Instr
 {
-    public class GenericPowerSupply:IPowerSupply
+    public class GenericPSU:IPowerSupply
     {
         IPowerSupply _psu;
 
-        public GenericPowerSupply(IPowerSupply psu)
+        public GenericPSU(IPowerSupply instanceOfPSU)
         {
-            _psu = psu;
+            _psu = instanceOfPSU;
         }
 
         public string Identify()

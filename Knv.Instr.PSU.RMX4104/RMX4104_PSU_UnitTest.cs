@@ -111,7 +111,7 @@ namespace Knv.Instr.PSU.RMX4104
                 try
                 {
                     var resp = psu.Identify();
-                    double value = psu.GetActualVolt();
+                    double value = psu.GetActualCurrent();
                     Assert.IsTrue(value < 1);
                 }
                 finally

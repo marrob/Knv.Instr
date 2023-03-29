@@ -8,6 +8,10 @@ namespace Knv.Instr
 {
     public interface IDigitalMultiMeter : IDisposable
     {
-        
+        string Identify();
+        void Config(string function, double range);
+
+        double Read();
+
     }
 }
