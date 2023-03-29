@@ -1,25 +1,25 @@
 ﻿
-namespace Knv.Instr.DMM.KEI2100
+namespace Knv.Instr.DMM.KEI6500
 {
     using NUnit.Framework;
     using System.Reflection;
     using System.Threading;
 
     [TestFixture]
-    internal class KEI2100_DMM_UnitTest
+    internal class KEI6500_DMM_UnitTest
     {
-        string VISA_NAME = "KEI2100";
+        string VISA_NAME = "KEI6500";
 
         [Test]
         public void Identify()
         {
-            using (var dmm = new KEI2100(VISA_NAME, isSim: false))
+            using (var dmm = new KEI6500(VISA_NAME, isSim: false))
             {
                 try
                 {
                     var resp = dmm.Identify();
                     Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS INC."));
-                    Assert.IsTrue(resp.Contains("MODEL 2100"));
+                    Assert.IsTrue(resp.Contains("MODEL 6500"));
                 }
                 finally
                 {
@@ -32,7 +32,7 @@ namespace Knv.Instr.DMM.KEI2100
         [Test]
         public void MeasureVoltSmallestRange()
         {
-            using (var dmm = new KEI2100(VISA_NAME, isSim: false))
+            using (var dmm = new KEI6500(VISA_NAME, isSim: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS INC."));
@@ -47,7 +47,7 @@ namespace Knv.Instr.DMM.KEI2100
         [Test]
         public void WriteTestToDiaplay()
         {
-            using (var dmm = new KEI2100(VISA_NAME, isSim: false))
+            using (var dmm = new KEI6500(VISA_NAME, isSim: false))
             {
                 try
                 {
