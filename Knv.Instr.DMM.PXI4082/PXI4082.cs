@@ -63,7 +63,7 @@ namespace Knv.Instr.DMM.PXI4082
                 case "2WR": selectedFunction = DmmMeasurementFunction.TwoWireResistance; break;
                 case "4WR": selectedFunction = DmmMeasurementFunction.FourWireResistance; break;
                 case "CAP": selectedFunction = DmmMeasurementFunction.Capacitance; break;
-                default: throw new ArgumentException("Nem támogatott funkció: Ezek támogatottak: DCV, DCC, 2WR, 4WR");
+                default: throw new ArgumentException($" The {function} is not supported. Suppoerted functions: DCV, DCC, 2WR, 4WR, CAP");
             }
 
             _session.ConfigureMeasurementDigits(selectedFunction, range, resoultionDigits);
