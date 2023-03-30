@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{4BADC809-BFD0-41E8-8EC5-21BCD08890CF}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Knv.Instr.DAQ</RootNamespace>
-    <AssemblyName>Knv.Instr.DAQ</AssemblyName>
+    <RootNamespace>Knv.Instr.DAQ.PCI6353</RootNamespace>
+    <AssemblyName>Knv.Instr.DAQ.PCI6353</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

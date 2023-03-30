@@ -1,4 +1,4 @@
-﻿namespace Knv.Instr.DAQ
+﻿namespace Knv.Instr.DAQ.PCI6353
 {
 
     using NationalInstruments.DAQmx;

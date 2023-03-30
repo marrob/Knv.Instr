@@ -1,11 +1,10 @@
 ﻿
 
-namespace Knv.Instr.DAQ
+namespace Knv.Instr.DAQ.PCI6353
 {
     using System;
     using NUnit.Framework;
     using NationalInstruments.DAQmx;
-    using System.Reflection;
 
     [TestFixture]
     internal class SignalGen_MultiAnalogOutput_UnitTest

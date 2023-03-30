@@ -1,6 +1,6 @@
 ﻿
 
-namespace Knv.Instr.DAQ
+namespace Knv.Instr.DAQ.PCI6353
 {
     using System;
     using NUnit.Framework;

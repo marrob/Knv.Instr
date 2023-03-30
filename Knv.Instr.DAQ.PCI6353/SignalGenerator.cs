@@ -1,5 +1,5 @@
 ﻿
-namespace Knv.Instr.DAQ
+namespace Knv.Instr.DAQ.PCI6353
 {
 
     using NationalInstruments.DAQmx;
@@ -7,6 +7,9 @@ namespace Knv.Instr.DAQ
     using System.Timers;
 
 
+    /// <summary>
+    /// Ez a megoldás a windows ütemezőjét használja
+    /// </summary>
     public class SignalGenerator:IDisposable
     {
 

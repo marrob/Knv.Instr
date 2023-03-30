@@ -18,7 +18,7 @@
  * C:\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies (64-bit)\Current\NationalInstruments.DAQmx.dll
  *
  */
-namespace Knv.Instr.DAQ
+namespace Knv.Instr.DAQ.PCI6353
 {
     using NUnit.Framework;
 
