@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GPIB_Basic_UnitTest.cs" />
+    <Compile Include="HP6634A_GPIB_SAMPLE.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
