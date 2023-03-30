@@ -79,9 +79,8 @@ namespace Knv.Instr.DAQ.PCI6353
 
             if (disposing)
             {
-                _timer.Dispose();
-                if(_myTask != null)
-                   _myTask.Dispose();
+                _timer?.Dispose();
+                _myTask?.Dispose();
             }
             _disposed = true;
         }

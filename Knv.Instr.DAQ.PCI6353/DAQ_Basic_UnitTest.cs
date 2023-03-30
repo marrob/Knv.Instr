@@ -32,12 +32,7 @@ namespace Knv.Instr.DAQ.PCI6353
         }
 
 
-        [Test]
-        public void GetOneVoltage()
-        {
-            var value = Tools.AIgetOneVolt("Dev1", "ai0");
-            Assert.IsTrue(value != 0);
-        }
+
 
         [TestCase(1)]
         [TestCase(2)]

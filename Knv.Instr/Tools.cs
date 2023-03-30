@@ -13,11 +13,10 @@ namespace Knv.Instr
         /// </summary>
         /// <param name="data"></param>
         /// <param name="path"></param>
-        public static void SignalToFile(double[] data, string title)
+        public static void SignalToFile(double[] data, string title, string directory)
         {
             var dt = DateTime.Now;
             var fileName = $"{title}_{dt:yyyy}{dt:MM}{dt:dd}_{dt:HH}{dt:mm}{dt:ss}.csv";
-            var directory = Constants.LogRootDirecotry;
 
             if (!File.Exists(directory))
                 Directory.CreateDirectory(directory);
@@ -26,7 +25,7 @@ namespace Knv.Instr
             using (var sw = new StreamWriter(path))
             {
                 foreach (var value in data)
-                    sw.WriteLine($"{value:#.000}");
+                    sw.WriteLine($"\"{value:#.000}\"");
             }
         }
 

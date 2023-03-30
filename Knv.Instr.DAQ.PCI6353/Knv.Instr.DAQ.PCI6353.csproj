@@ -61,6 +61,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnalogInput.cs" />
+    <Compile Include="AnalogInput_UnitTest.cs" />
     <Compile Include="Tools.cs" />
     <Compile Include="DAQ_Basic_UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
