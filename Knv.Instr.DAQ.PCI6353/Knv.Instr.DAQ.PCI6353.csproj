@@ -63,12 +63,14 @@
   <ItemGroup>
     <Compile Include="AnalogInput.cs" />
     <Compile Include="AnalogInput_UnitTest.cs" />
+    <Compile Include="AnalogOutput.cs" />
+    <Compile Include="Math_UnitTest.cs" />
     <Compile Include="Tools.cs" />
-    <Compile Include="DAQ_Basic_UnitTest.cs" />
+    <Compile Include="AnalogOutput_UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SignalGenerator.cs" />
+    <Compile Include="AnalogSignalGenSoftTiming.cs" />
     <Compile Include="SignalGen_MultiAnalogOutput_UnitTest.cs" />
-    <Compile Include="SignalGen_UnitTest.cs" />
+    <Compile Include="AnalogSignalGen_UnitTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

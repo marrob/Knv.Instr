@@ -3,16 +3,17 @@
     using NUnit.Framework;
     using System.Reflection;
     using System.Threading;
+    using NationalInstruments.Visa;
 
     [TestFixture]
     internal class HP6634A_PSU_UnitTest
     {
-        const int ADDRESS = 7;
+        const string VISA_NAME = "HP6634A";
 
         [Test]
         public void Identify()
         {
-            using (var psu = new HP6634A(ADDRESS, isSim: false))
+            using (var psu = new HP6634A(VISA_NAME, isSim: false))
             {
                 try
                 {
@@ -30,7 +31,7 @@
         [Test]
         public void RawGetVolt()
         {
-            using (var psu = new HP6634A(ADDRESS, isSim: false))
+            using (var psu = new HP6634A(VISA_NAME, isSim: false))
             {
                 try
                 {
@@ -47,7 +48,7 @@
         [Test]
         public void SetVoltCurrent()
         {
-            using (var psu = new HP6634A(ADDRESS, isSim: false))
+            using (var psu = new HP6634A(VISA_NAME, isSim: false))
             {
                 try
                 {
@@ -66,7 +67,7 @@
         [Test]
         public void SetVoltCurrentOnOff()
         {
-            using (var psu = new HP6634A(ADDRESS, isSim: false))
+            using (var psu = new HP6634A(VISA_NAME, isSim: false))
             {
                 try
                 {
@@ -85,7 +86,7 @@
         [Test]
         public void GetActualVolts()
         {
-            using (var psu = new HP6634A(ADDRESS, isSim: false))
+            using (var psu = new HP6634A(VISA_NAME, isSim: false))
             {
                 try
                 {
@@ -106,7 +107,7 @@
         [Test]
         public void GetActualCurrent()
         {
-            using (var psu = new HP6634A(ADDRESS, isSim: false))
+            using (var psu = new HP6634A(VISA_NAME, isSim: false))
             {
                 try
                 {
@@ -125,7 +126,7 @@
         [TestCase(-0.1, 0, 0.1, 11, 12, 13)]
         public void SetVoltCurrentOnOff(double min1, double nominal1, double max1, double min2, double nominal2, double max2)
         {
-            using (var psu = new HP6634A(ADDRESS, isSim: false))
+            using (var psu = new HP6634A(VISA_NAME, isSim: false))
             {
                 try
                 {

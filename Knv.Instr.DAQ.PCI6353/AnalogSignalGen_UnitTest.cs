@@ -5,10 +5,26 @@ namespace Knv.Instr.DAQ.PCI6353
     using System;
     using NUnit.Framework;
     using NationalInstruments.DAQmx;
+    using System.Threading;
 
     [TestFixture]
     internal class SignalGen
     {
+
+
+        [Test]
+        public void AnalogSignalGenSoftTiming()
+        {
+            using (var asgst = new AnalogSignalGenSoftTiming("Dev1"))
+            {
+
+                asgst.Start("ao0", 1, 100, 100);
+                Thread.Sleep(1000);
+                asgst.Stop();
+            }
+        }
+
+
         [Test]
         public void SineWave_AO_PCI_6353()
         {

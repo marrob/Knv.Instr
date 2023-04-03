@@ -9,37 +9,27 @@
  * 
  * VSET does not have Response! If you read you will get Error...
  * 
- * 
- * .NET Framework: 4.8.04084
- *  Visual Studio: 2022 Community (64-bit) Version 17.2.6
- *  TestStnad: TestStand Version 2017 (17.0.0.184) 32-bit
- *  
- * --- NI VISA ---
- * NationalInstruments.Visa
- * C:\Program Files(x86)\IVI Foundation\VISA\Microsoft.NET\Framework32\v4.0.30319\NI VISA.NET 19.0\NationalInstruments.Visa.dll
- * C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v4.0.30319\NI VISA.NET 19.0\NationalInstruments.Visa.dll 
-
- * Ivi.Visa
- * C:\Program Files(x86)\IVI Foundation\VISA\Microsoft.NET\Framework32\v2.0.50727\VISA.NET Shared Components 5.8.0\Ivi.Visa.dll
- * C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v2.0.50727\VISA.NET Shared Components 5.11.0\Ivi.Visa.dll
  */
-
 namespace Knv.Instr.PSU.HP6634A
 {
-    using Ivi.Visa;
-    using NationalInstruments.Visa;
+    /*C:\Program Files(x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common 19.1.40\NationalInstruments.Common.dll*/
+    using NationalInstruments;
+    /*C:\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies\Current\NationalInstruments.NI4882.dll*/
+    using NationalInstruments.NI4882;
     using System;
 
     public class HP6634A : Log, IDisposable, IPowerSupply
     { 
         bool _disposed = false;
+        Device _device;
 
-        readonly IVisaSession _session = null;
 
-
-        public HP6634A(string visaName, bool isSim)
+        public HP6634A(int address, bool isSim)
         {
-            _session = new ResourceManager().Open(visaName);
+            _device = new Device(boardNumber: 0, new Address((byte)address));
+            LogWriteLine("Instance created.");
+            _device.Reset(); //Törli a beállításokat
+            _device.Clear(); //Törli a hibákat
         }
 
         public string Identify()
@@ -84,17 +74,17 @@ namespace Knv.Instr.PSU.HP6634A
         }
 
         public string Query(string request)
-        {
-            ((MessageBasedSession)_session).RawIO.Write($"{request}\r\n");
-            LogWriteLine($"Tx:{request}");     
-            var response = ((MessageBasedSession)_session).RawIO.ReadString().Trim( new char[] {'\r', '\n', ' ' });
+        { 
+            _device.Write($"{request}\r\n");
+            LogWriteLine($"Tx:{request}");
+            var response = _device.ReadString().Trim( new char[] {'\r', '\n', ' ' });
             LogWriteLine($"Rx:{response}");
             return response;
         }
 
         public void Write(string request)
         {
-            ((MessageBasedSession)_session).RawIO.Write($"{request}\r\n");
+            _device.Write($"{request}\r\n");
             LogWriteLine($"Tx:{request}");
         }
 
@@ -111,7 +101,7 @@ namespace Knv.Instr.PSU.HP6634A
 
             if (disposing)
             {
-                _session?.Dispose();
+                _device?.Dispose();
                 LogWriteLine("Instance disposed.");
             }
             _disposed = true;
