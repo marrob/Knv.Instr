@@ -17,9 +17,8 @@ namespace Knv.Instr.DAQ.PCI6353
         {
             using (var asgst = new AnalogSignalGenSoftTiming("Dev1"))
             {
-
-                asgst.Start("ao0", 1, 100, 100);
-                Thread.Sleep(1000);
+                asgst.Start("ao0", amplitude: 5, freq: 1, samples: 10);
+                Thread.Sleep(10000);
                 asgst.Stop();
             }
         }

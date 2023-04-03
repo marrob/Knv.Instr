@@ -28,6 +28,13 @@ namespace Knv.Instr.DAQ.PCI6353
 
         }
 
+        /// <summary>
+        ///Nagy mintaszámmal már rosszul mükdöik
+        /// </summary>
+        /// <param name="channel"></param>
+        /// <param name="amplitude"></param>
+        /// <param name="freq"></param>
+        /// <param name="samples"></param>
         public void Start(string channel, double amplitude, double freq, int samples)
         {
             _myTask = new Task();
@@ -47,8 +54,8 @@ namespace Knv.Instr.DAQ.PCI6353
              * 
              */
 
-            _timer = new Timer();     
-            _timer.Interval = 1/freq/samples;
+            _timer = new Timer();
+            _timer.Interval = (1/freq)/samples * 1000; //ms-ben várja
             _timer.Elapsed += ValueUpdate;
             _timer.Start();
         }
@@ -66,7 +73,7 @@ namespace Knv.Instr.DAQ.PCI6353
 
               double data = _amplitude * Math.Sin(Math.PI / 180.0 * 1/_samples * 360 * (_counter++ % _samples));                     
              _writer.WriteSingleSample(true, data);
-            if(_counter >= _samples)
+            if(_counter > _samples)
                 _counter = 0;
         }
 
@@ -75,6 +82,7 @@ namespace Knv.Instr.DAQ.PCI6353
             _timer.Stop();
             _timer.Elapsed -= ValueUpdate;
             _timer.Dispose();
+            _writer.WriteSingleSample(true, 0);
             _myTask.Stop();
         }
 
