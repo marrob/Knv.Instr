@@ -42,7 +42,7 @@ namespace Knv.Instr.DAQ.PCI6353
                 using (var myTask = new Task())
                 {
                     string physicalChannel = $"{visaName}/{channel}";
-                    myTask.AIChannels.CreateVoltageChannel(physicalChannel, $"AI:{channel}", terminalConfiguration, -10, 10, AIVoltageUnits.Volts);
+                    myTask.AIChannels.CreateVoltageChannel(physicalChannel, ""/*$"AI:{channel}"*/, terminalConfiguration, -10, 10, AIVoltageUnits.Volts);
                     AnalogMultiChannelReader reader = new AnalogMultiChannelReader(myTask.Stream);
                     myTask.Control(TaskAction.Verify);
                     result = reader.ReadSingleSample()[0];
@@ -85,7 +85,7 @@ namespace Knv.Instr.DAQ.PCI6353
             using (var myTask = new Task())
             {
                 string physicalChannel = $"{visaName}/{channel}";
-                myTask.AIChannels.CreateVoltageChannel(physicalChannel, $"AI:{channel}", AITerminalConfiguration.Rse, -10, 10, AIVoltageUnits.Volts);
+                myTask.AIChannels.CreateVoltageChannel(physicalChannel,"" /*$"AI:{channel}"*/, AITerminalConfiguration.Rse, -10, 10, AIVoltageUnits.Volts);
                 myTask.Timing.ConfigureSampleClock("", sFreq, SampleClockActiveEdge.Rising, SampleQuantityMode.FiniteSamples, samples);
                 myTask.Control(TaskAction.Verify);
                 var reader = new AnalogSingleChannelReader(myTask.Stream);
