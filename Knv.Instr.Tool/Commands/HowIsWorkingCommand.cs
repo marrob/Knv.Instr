@@ -7,7 +7,7 @@ namespace Knv.Instr.Tool.Commands
 
     class HowIsWorkingCommand : ToolStripButton
     {
-        readonly IMainForm _mainForm;
+       // readonly IMainForm _mainForm;
 
         public HowIsWorkingCommand()
         {

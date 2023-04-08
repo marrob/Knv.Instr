@@ -1,0 +1,3 @@
+C:\Program Files (x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common 19.1.40\NationalInstruments.Common.dll
+
+support:https://knowledge.ni.com/KnowledgeArticleDetails
