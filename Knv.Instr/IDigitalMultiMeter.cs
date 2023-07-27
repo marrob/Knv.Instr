@@ -8,6 +8,5 @@ namespace Knv.Instr
         void Config(string function, string rangeName);
         void Config(string function, string rangeName, double digits);
         double Read();
-
     }
 }

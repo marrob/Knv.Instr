@@ -7,21 +7,24 @@ namespace Knv.Instr.DMM.PXI4082
      *
      * Ivi.Driver.dll
      * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v2.0.50727\IviFoundationSharedComponents 2.0.0\Ivi.Driver.dll
+     * ..\lib\IviFoundationSharedComponents 2.0.0\Ivi.Driver.dll
      * 
      * Ivi.Dmm.dll
      * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v2.0.50727\IviFoundationSharedComponents 2.0.0\Ivi.Dmm.dll
-     *    
+     * ..\lib\IviFoundationSharedComponents 2.0.0\Ivi.Dmm.dll
+     *  
      * NationalInstruments.Common.dll
      * C:\Program Files (x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common 19.1.40\NationalInstruments.Common.dll
      * 
      * NationalInstruments.ModularInstruments.Common.dll
-     * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.Common 22.5.0\NationalInstruments.ModularInstruments.Common.dll
+     * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.ModularInstruments.Common.dll
+     * ..\lib\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.Common.dll
      * 
-     * NationalInstruments.ModularInstruments.ModularInstrumentsSystem.dll
-     * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.ModularInstrumentsSystem 1.4.45\NationalInstruments.ModularInstruments.ModularInstrumentsSystem.dll
      * 
      * NationalInstruments.ModularInstruments.NIDmm.Fx45
      * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.NIDmm 21.3.0\NationalInstruments.ModularInstruments.NIDmm.Fx45.dll
+     * ..\lib\NationalInstruments.ModularInstruments.NIDmm(x86) 22.5.0\NationalInstruments.ModularInstruments.NIDmm.Fx45.dll
+     *
      */
 
     using NationalInstruments.ModularInstruments.NIDmm;

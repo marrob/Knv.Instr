@@ -6,51 +6,96 @@ namespace Knv.Instr.SMU.PXI4139
     [TestFixture]
     internal class PXI4139_SMU_UnitTest
     {
-        string VISA_NAME = "SMU1";
+        string RESOURCE_NAME = "J18_SMU";
 
 
 
         [Test]
         public void Identify()
         {
-            using (var smu = new PXI4139(VISA_NAME, simulation: false))
+            using (var smu = new PXI4139(RESOURCE_NAME, simulation: false))
             {
                 var resp = smu.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
             }
         }
 
-#if false
+
         [Test]
         public void MeasureVoltSmallestRange()
         {
-            using (var dmm = new PXI4139(VISA_NAME, isSim: false))
+            using (var smu = new PXI4139(RESOURCE_NAME, simulation: false))
             {
-                var resp = dmm.Identify();
-                Assert.IsTrue(resp.Contains("National Instruments"));
-
-                dmm.Config("DCV", rangeName: "1V");
-                var measValue = dmm.Read();
+                var measValue = smu.GetActualVolt();
                 Assert.IsTrue(-0.5 < measValue && measValue < 0.5);
-
             }
         }
 
         [Test]
-        public void Measure2WireResistance()
+        public void VoltageSource_SetMultiplieTimes()
         {
-            using (var dmm = new PXI4139(VISA_NAME, isSim: false))
+            using (var smu = new PXI4139(RESOURCE_NAME, simulation: false))
             {
-                var resp = dmm.Identify();
+                var resp = smu.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
-                 
-                dmm.Config("2WR", rangeName: "100K");
-                var measValue = dmm.Read();
-                Assert.IsTrue(double.IsNaN(measValue));
-
+                smu.ConfigVoltageSource("600mV", "100uA");
+                smu.SetVoltageSource(voltage:0.05, current:0.00001);
+                smu.SetVoltageSource(voltage: 0.06, current: 0.00001);
+                smu.OnOff(enable: true);
             }
         }
-#endif
+
+        [Test]
+        public void VoltageSource_ConfigMultiplieTimes()
+        {
+            using (var smu = new PXI4139(RESOURCE_NAME, simulation: false))
+            {
+                var resp = smu.Identify();
+                Assert.IsTrue(resp.Contains("National Instruments"));
+
+                smu.ConfigVoltageSource("600mV", "100uA");
+                smu.SetVoltageSource(voltage: 0.05, current: 0.00001);
+
+                smu.ConfigVoltageSource("6V", "10mA");
+                smu.SetVoltageSource(voltage: 3.0, current: 0.005);
+
+                smu.OnOff(enable: true);
+                smu.OnOff(enable: false);
+            }
+        }
+
+        [Test]
+        public void VoltageSource_Measure()
+        {
+
+            double volts;
+            using (var smu = new PXI4139(RESOURCE_NAME, simulation: false))
+            {
+                var resp = smu.Identify();
+                Assert.IsTrue(resp.Contains("National Instruments"));
+
+                smu.ConfigVoltageSource("6V", "1mA");
+                smu.SetVoltageSource(voltage: 3.0, current: 0.0005);
+                smu.OnOff(enable: true);
+                volts = smu.GetActualVolt();
+                Assert.Less(volts, 3.1);
+                Assert.Greater(volts, 2.9);
+
+                smu.ConfigVoltageSource("60V", "1mA");
+                smu.SetVoltageSource(voltage: 10.0, current: 0.0005);
+                volts = smu.GetActualVolt();
+                Assert.Less(volts, 10.1);
+                Assert.Greater(volts, 9.9);
+
+
+                smu.OnOff(enable: false);   
+                System.Threading.Thread.Sleep(100);
+                volts = smu.GetActualVolt();
+                Assert.Less(volts, 0.5);
+                Assert.Greater(volts, -0.5);
+            }
+        }
+
     }
 
 

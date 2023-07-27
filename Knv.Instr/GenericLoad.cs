@@ -13,6 +13,7 @@
         {
             return _load.Identify();
         }
+
         public void Config(int channel, string range, double current)
         {
             _load.Config(channel, range, current);

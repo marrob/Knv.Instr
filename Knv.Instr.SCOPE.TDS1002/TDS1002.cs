@@ -1,16 +1,26 @@
-﻿
+﻿/* 
+ * .NET Framework: 4.8.04084
+ * Visual Studio: 2022 Community(64 - bit) Version 17.2.6
+ *  TestStnad: TestStand Version 2017 (17.0.0.184) 32 - bit
+ *
+ *---NI VISA-- -
+ *NationalInstruments.Visa
+ * C:\Program Files(x86)\IVI Foundation\VISA\Microsoft.NET\Framework32\v4.0.30319\NI VISA.NET 19.0\NationalInstruments.Visa.dll
+ * C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v4.0.30319\NI VISA.NET 19.0\NationalInstruments.Visa.dll 
+ * ..\lib\NationalInstruments.Visa(amd64) 4.0.30319\NationalInstruments.Visa.dll
+ *
+ *
+ *
+ * Ivi.Visa
+ * C:\Program Files(x86)\IVI Foundation\VISA\Microsoft.NET\Framework32\v2.0.50727\VISA.NET Shared Components 5.8.0\Ivi.Visa.dll
+ * C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v2.0.50727\VISA.NET Shared Components 5.11.0\Ivi.Visa.dll
+ * ..\lib\Ivi.Visa(amd64) 2.0.50727\Ivi.Visa.dll
+ */
+
 namespace Knv.Instr.SCOPE.TDS1002
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.IO.Ports;
-
-    /* C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v2.0.50727\VISA.NET Shared Components 5.11.0\Ivi.Visa.dll*/
     using Ivi.Visa;
-    /* C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v4.0.30319\NI VISA.NET 19.0\NationalInstruments.Visa.dll*/
     using NationalInstruments.Visa;
 
     public class TDS1002 : Log, IDisposable

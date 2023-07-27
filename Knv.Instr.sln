@@ -26,6 +26,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instr.LOAD.RMX4005", "Knv.Instr.LOAD.RMX4005\Knv.Instr.LOAD.RMX4005.csproj", "{8201C1CD-17D3-49D3-BF26-E0A50DD00BCD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instr.SMU.PXI4139", "Knv.Instr.SMU.PXI4139\Knv.Instr.SMU.PXI4139.csproj", "{E0387AF1-5EB6-484F-852D-DFEC70CD503B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB} = {DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

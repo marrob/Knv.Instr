@@ -9,6 +9,5 @@ namespace Knv.Instr
         void Config(int channel, string range, double current);
 
         void OnOff(bool onOff);
-
     }
 }

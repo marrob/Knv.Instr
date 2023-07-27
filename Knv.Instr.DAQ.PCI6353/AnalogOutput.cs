@@ -15,17 +15,17 @@ namespace Knv.Instr.DAQ.PCI6353
         /// Kártya pl lehet NI PCIe-6353, ezen kettő db Analog Out csatorna van: ao0 és ao1
         /// A beállított feszültség a kötkező beállításig vagy újraidnitásig a kiementen van! 
         /// </summary>
-        /// <param name="visaName"></param>
+        /// <param name="resourceName"></param>
         /// <param name="channel"></param>
         /// <param name="voltage"></param>
-        public static void SetChannel(string visaName, string channel, double voltage)
+        public static void SetChannel(string resourceName, string channel, double voltage)
         {
             if (simualtion)
                 return;
 
             using (var myTask = new Task())
             {
-                string physicalChannel = $"{visaName}/{channel}";
+                string physicalChannel = $"{resourceName}/{channel}";
                 myTask.AOChannels.CreateVoltageChannel(physicalChannel, "aoChannel", -10, 10, AOVoltageUnits.Volts);
                 var writer = new AnalogSingleChannelWriter(myTask.Stream);
                 writer.WriteSingleSample(true, voltage);

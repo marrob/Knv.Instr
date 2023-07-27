@@ -6,7 +6,6 @@ namespace Knv.Instr.DMM.KEI6500
     using System.Collections.Generic;
     using System.Linq;
     using NationalInstruments.Visa;
-    using static NUnit.Framework.Constraints.Tolerance;
 
     public class KEI6500 : Log, IDigitalMultiMeter, IDisposable
     {
