@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Knv.Instr
 {
     public interface IDigitalMultiMeter : IDisposable
     {
         string Identify();
-        void Config(string function, double range);
-
+        void Config(string function, string rangeName);
+        void Config(string function, string rangeName, double digits);
         double Read();
 
     }

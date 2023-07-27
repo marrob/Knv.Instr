@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Knv.Instr
+﻿namespace Knv.Instr
 {
     public class GenericDMM: IDigitalMultiMeter
     {
-        IDigitalMultiMeter _dmm;
+        readonly IDigitalMultiMeter _dmm;
 
-        public GenericDMM(IDigitalMultiMeter instanceOfDMM)
+        public GenericDMM(IDigitalMultiMeter dmmInstance)
         {
-            _dmm = instanceOfDMM;
+            _dmm = dmmInstance;
         }
 
         public string Identify()
@@ -20,9 +14,14 @@ namespace Knv.Instr
             return _dmm.Identify(); 
         }
 
-        public void Config(string function, double range)
+        public void Config(string function, string rangeName)
         {
-            _dmm.Config(function, range);
+            _dmm.Config(function, rangeName);
+        }
+
+        public void Config(string function, string rangeName, double digits)
+        {
+            _dmm.Config(function, rangeName, digits);
         }
 
         public double Read()

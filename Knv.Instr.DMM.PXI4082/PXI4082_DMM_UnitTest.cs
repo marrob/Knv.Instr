@@ -11,7 +11,7 @@ namespace Knv.Instr.DMM.PXI4082
         [Test]
         public void Identify()
         {
-            using (var dmm = new PXI4082(VISA_NAME, isSim: false))
+            using (var dmm = new PXI4082(VISA_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
@@ -21,12 +21,12 @@ namespace Knv.Instr.DMM.PXI4082
         [Test]
         public void MeasureVoltSmallestRange()
         {
-            using (var dmm = new PXI4082(VISA_NAME, isSim: false))
+            using (var dmm = new PXI4082(VISA_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
 
-                dmm.Config("DCV", range: 0.1);
+                dmm.Config("DCV", rangeName: "1V");
                 var measValue = dmm.Read();
                 Assert.IsTrue(-0.5 < measValue && measValue < 0.5);
 
@@ -36,12 +36,12 @@ namespace Knv.Instr.DMM.PXI4082
         [Test]
         public void Measure2WireResistance()
         {
-            using (var dmm = new PXI4082(VISA_NAME, isSim: false))
+            using (var dmm = new PXI4082(VISA_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
                  
-                dmm.Config("2WR", range: 100000000);
+                dmm.Config("2WR", rangeName: "100K");
                 var measValue = dmm.Read();
                 Assert.IsTrue(double.IsNaN(measValue));
 

@@ -33,19 +33,23 @@ namespace Knv.Instr.PSU.HP6634A
     public class HP6634A : Log, IDisposable, IPowerSupply
     { 
         bool _disposed = false;
-
         readonly IVisaSession _session = null;
+        readonly bool _simulation = false;
 
 
-        public HP6634A(string visaName, bool isSim)
+        public HP6634A(string visaName, bool simulation)
         {
-            _session = new ResourceManager().Open(visaName);
+            _simulation = simulation;
+            if (!_simulation)
+                _session = new ResourceManager().Open(visaName);
         }
 
         public string Identify()
         {
-            var resp = Query($"ID?");
-            return resp;
+            if (_simulation)
+                return "Simulated HP6634A";
+            else
+                return Query($"ID?");
         }
 
         public void SetOutput(double volt, double current)

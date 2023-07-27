@@ -13,24 +13,20 @@ namespace Knv.Instr.SCOPE.TDS1002
     /* C:\Program Files\IVI Foundation\VISA\Microsoft.NET\Framework64\v4.0.30319\NI VISA.NET 19.0\NationalInstruments.Visa.dll*/
     using NationalInstruments.Visa;
 
-
-
     public class TDS1002 : Log, IDisposable
     {
         bool _disposed = false;
         readonly IVisaSession _session = null;
 
-        public TDS1002(string visaName, bool isSim)
+        public TDS1002(string visaName, bool simulation)
         {
             _session = new ResourceManager().Open(visaName);
         }
-
 
         public string Identify()
         {
             var resp = Query($"*IDN?");
             return resp;
-
         }
 
         public string Query(string request)

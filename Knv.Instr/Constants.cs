@@ -1,5 +1,4 @@
-﻿
-namespace Knv.Instr
+﻿namespace Knv.Instr
 {
     using System;
 

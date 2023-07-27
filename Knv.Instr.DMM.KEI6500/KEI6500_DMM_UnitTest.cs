@@ -13,7 +13,7 @@ namespace Knv.Instr.DMM.KEI6500
         [Test]
         public void Identify()
         {
-            using (var dmm = new KEI6500(VISA_NAME, isSim: false))
+            using (var dmm = new KEI6500(VISA_NAME, simulation: false))
             {
                 try
                 {
@@ -32,12 +32,12 @@ namespace Knv.Instr.DMM.KEI6500
         [Test]
         public void MeasureVoltSmallestRange()
         {
-            using (var dmm = new KEI6500(VISA_NAME, isSim: false))
+            using (var dmm = new KEI6500(VISA_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS INC."));
 
-                dmm.Config("DCV", range: 0.1);
+                dmm.Config("DCV", rangeName: "1V");
                 var measValue = dmm.Read();
                 Assert.IsTrue(-0.5 < measValue && measValue < 0.5);
 
@@ -47,7 +47,7 @@ namespace Knv.Instr.DMM.KEI6500
         [Test]
         public void WriteTestToDiaplay()
         {
-            using (var dmm = new KEI6500(VISA_NAME, isSim: false))
+            using (var dmm = new KEI6500(VISA_NAME, simulation: false))
             {
                 try
                 {

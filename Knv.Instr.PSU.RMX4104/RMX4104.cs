@@ -15,6 +15,7 @@ namespace Knv.Instr.PSU.RMX4104
 
         readonly ResourceManager _resourceManager;
         readonly MessageBasedSession _session;
+        bool _isSim;
 
         /// <summary>
         /// RMX4104, 
@@ -28,52 +29,83 @@ namespace Knv.Instr.PSU.RMX4104
         /// <param name="isSim"></param>
         public RMX4104(string visaName, bool isSim)
         {
-            _resourceManager = new ResourceManager();
-            _session = (MessageBasedSession)_resourceManager.Open(visaName);
-            LogWriteLine("Instance created.");
+            _isSim = isSim;
 
-            Write("*RST;");
-            Write(":SYST:ERR:ENAB;");
+            if (!_isSim)
+            {
+                _resourceManager = new ResourceManager();
+                _session = (MessageBasedSession)_resourceManager.Open(visaName);
+                LogWriteLine("Instance created.");
+
+                Write("*RST;");
+                Write(":SYST:ERR:ENAB;");
+            }
         }
 
         public string Identify()
         {
-            var resp = Query("*IDN?");
+            string resp;
+            if (!_isSim)
+                resp = Query("*IDN?");
+            else
+                resp = "I am a simulated NI RMX4104";
             return resp;
         }
 
         public void SetOutput(double volt, double current)
         {
-            Write($":VOLT {volt:g}; :CURR {current:g};");
+            if (!_isSim)
+                Write($":VOLT {volt:g}; :CURR {current:g};");
         }
 
         public void SetOutput(double volt, double current, bool onOff)
         {
-            Write($":VOLT {volt:g};:CURR {current:g};:OUTP:STAT {(onOff ? "ON" : "OFF")};");
+            if (!_isSim)
+                Write($":VOLT {volt:g};:CURR {current:g};:OUTP:STAT {(onOff ? "ON" : "OFF")};");
         }
 
         public double SetOutputGetActualVolt(double volt, double current)
         {
-            var resp = Query($":VOLT {volt:g};:CURR {current:g};:MEAS:VOLT?;");
+            string resp;
+            if (!_isSim)
+                resp = Query($":VOLT {volt:g};:CURR {current:g};:MEAS:VOLT?;");
+            else
+                resp = volt.ToString();
             return double.Parse(resp);
         }
 
         public double GetActualVolt()
         {
-            var resp = Query(":MEAS:VOLT?;");
+            string resp;
+            if (!_isSim)
+                resp = Query(":MEAS:VOLT?;");
+            else
+                resp = "0";
             return double.Parse(resp);
         }
 
         public double GetActualCurrent()
         {
-            var resp = Query(":MEAS:CURR?");
+            string resp;
+            if (!_isSim)
+                resp = Query(":MEAS:CURR?");
+            else
+                resp = "0";
             return double.Parse(resp);
         }
 
         public string GetErrors()
         {
-            string request = ":SYST:ERR?";
-            var resp = Query(request);
+            string resp;
+            if (!_isSim)
+            {
+                string request = ":SYST:ERR?";
+                resp = Query(request);
+            }
+            else
+            {
+                resp = "None";
+            }
             return resp;
         }
 

@@ -13,7 +13,7 @@
         [Test]
         public void Identify()
         {
-            using (var psu = new TDS1002(VISA_NAME, isSim: false))
+            using (var psu = new TDS1002(VISA_NAME, simulation: false))
             {
                 try
                 {

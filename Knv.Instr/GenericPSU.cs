@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Knv.Instr
+﻿namespace Knv.Instr
 {
     public class GenericPSU:IPowerSupply
     {
-        IPowerSupply _psu;
+        readonly IPowerSupply _psu;
 
-        public GenericPSU(IPowerSupply instanceOfPSU)
+        public GenericPSU(IPowerSupply psuInstance)
         {
-            _psu = instanceOfPSU;
+            _psu = psuInstance;
         }
 
         public string Identify()

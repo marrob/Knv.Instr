@@ -7,7 +7,7 @@ namespace Knv.Instr.DAQ.PCI6353
 
     static public class AnalogOutput
     {
-        public static bool IsSimualtion { get; set; } = false;
+        public static bool simualtion { get; set; } = false;
 
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace Knv.Instr.DAQ.PCI6353
         /// <param name="voltage"></param>
         public static void SetChannel(string visaName, string channel, double voltage)
         {
-            if (IsSimualtion)
+            if (simualtion)
                 return;
 
             using (var myTask = new Task())
