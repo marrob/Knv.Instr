@@ -9,10 +9,15 @@
             _smu = smuInstance;
         }
 
-        public void ConfigVoltageSource(string voltageRangeName, string currentLimitRangeName)
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV")
         { 
             _smu.ConfigVoltageSource(voltageRangeName, currentLimitRangeName);
         } 
+
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV", string sense = "Local")
+        {
+            _smu.ConfigVoltageSource(voltageRangeName, currentLimitRangeName, sense);
+        }
 
         public void SetVoltageSource(double voltage, double current)
         { 

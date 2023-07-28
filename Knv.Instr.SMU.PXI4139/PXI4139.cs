@@ -41,6 +41,7 @@ namespace Knv.Instr.SMU.PXI4139
     using System.Collections.Generic;
     using System.Linq;
     using NationalInstruments;
+    using Microsoft.SqlServer.Server;
 
     public class PXI4139 : ISourceMeasureUnits
     {
@@ -71,8 +72,13 @@ namespace Knv.Instr.SMU.PXI4139
             return $"{_session.Identity.InstrumentManufacturer}, {_session.Identity.InstrumentModel}, {_session.Identity.Revision }";
         }
 
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV")
+        {
+            ConfigVoltageSource(voltageRangeName, currentLimitRangeName, "Local");
+        }
 
-        public void ConfigVoltageSource(string voltageRangeName, string currentLimitRangeName)
+
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV", string sense = "Local")
         {
             if (_simulation)
                 return;
@@ -121,6 +127,25 @@ namespace Knv.Instr.SMU.PXI4139
             }
             _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimitAutorange = DCPowerSourceCurrentLimitAutorange.Off;
             _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimitRange = currentRange;
+            _session.Outputs[SelectedChannelName].Source.TransientResponse = DCPowerSourceTransientResponse.Normal;
+
+
+            sense = sense.ToUpper().Trim();
+
+            switch (sense)
+            { 
+                case "LOCAL":
+                    _session.Outputs[SelectedChannelName].Measurement.Sense = DCPowerMeasurementSense.Local;
+                    break;  
+                case "REMOTE":
+                    _session.Outputs[SelectedChannelName].Measurement.Sense = DCPowerMeasurementSense.Remote;
+                    break; 
+                default:
+                    throw new ArgumentException($" The {sense} is not supported. Supported functions: Local, Remote");
+            }
+
+            //TODO: ApertureTime
+            //_session.Outputs[SelectedChannelName].Measurement.ConfigureApertureTime(1, DCPowerMeasureApertureTimeUnits.PowerLineCycles);
         }
 
 
@@ -136,10 +161,10 @@ namespace Knv.Instr.SMU.PXI4139
             _session.Control.Initiate();
             // Wait for output to settle.
             _session.Events.SourceCompleteEvent.WaitForEvent(new PrecisionTimeSpan(21.0));
+
         }
 
-       
-
+      
         public void OnOff(bool enable)
         {
             if (_simulation)
