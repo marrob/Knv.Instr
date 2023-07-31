@@ -4,7 +4,6 @@ namespace Knv.Instr.LOAD.RMX4005
     using System;
     using NationalInstruments.Visa;
     using Ivi.Visa;
-    using NUnit.Framework;
     using System.Collections.Generic;
 
     public class RMX4005 : IElectronicsLoad
@@ -17,10 +16,11 @@ namespace Knv.Instr.LOAD.RMX4005
         {
             _simulation = simulation;
             if (_simulation)
+            {
                 _session = null;
+            }
             else
             {
-
                 _session = new ResourceManager().Open(resourceName);
                 ((MessageBasedSession)_session).TerminationCharacter = (byte)'\n';
                 ((MessageBasedSession)_session).TerminationCharacterEnabled = true;

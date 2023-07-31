@@ -23,7 +23,7 @@ namespace Knv.Instr.PSU.RMX4104
     using System.Collections.Generic;
     using Ivi.Visa;
     using NationalInstruments.Visa;
-    public class RMX4104 : Log, IPowerSupply, IDisposable
+    public class RMX4104 : IPowerSupply, IDisposable
     {
 
         bool _disposed = false;
@@ -45,48 +45,51 @@ namespace Knv.Instr.PSU.RMX4104
         public RMX4104(string resourceName, bool simulation)
         {
             _simulation = simulation;
-
-            if (!_simulation)
-            {
-                _resourceManager = new ResourceManager();
-                _session = (MessageBasedSession)_resourceManager.Open(resourceName);
-                LogWriteLine("Instance created.");
-
-                Write("*RST;");
-                Write(":SYST:ERR:ENAB;");
-            }
+            if (_simulation)
+                return;
+            _resourceManager = new ResourceManager();
+            _session = (MessageBasedSession)_resourceManager.Open(resourceName);
+            Write("*RST;");
+            Write(":SYST:ERR:ENAB;");
         }
 
         public string Identify()
         {
-            string resp;
-            if (!_simulation)
-                resp = Query("*IDN?");
+            if (_simulation)
+                return( "I am a simulated NI RMX4104"); 
             else
-                resp = "I am a simulated NI RMX4104";
-            return resp;
+                return(Query("*IDN?;"));
         }
 
         public void SetOutput(double volt, double current)
         {
-            if (!_simulation)
-                Write($":VOLT {volt:g}; :CURR {current:g};");
+            if (_simulation)
+                return;
+            Write($":VOLT {volt:g}; :CURR {current:g};");
+        }
+
+        public void OnOff(bool enable)
+        {
+            if (_simulation)
+                return;
+            Write($":OUTP:STAT {(enable ? "ON" : "OFF")};");
         }
 
         public void SetOutput(double volt, double current, bool onOff)
         {
-            if (!_simulation)
-                Write($":VOLT {volt:g};:CURR {current:g};:OUTP:STAT {(onOff ? "ON" : "OFF")};");
+            if (_simulation)
+                return;
+            Write($":VOLT {volt:g};:CURR {current:g};:OUTP:STAT {(onOff ? "ON" : "OFF")};");
         }
 
         public double SetOutputGetActualVolt(double volt, double current)
         {
             string resp;
-            if (!_simulation)
+            if (_simulation)
                 resp = Query($":VOLT {volt:g};:CURR {current:g};:MEAS:VOLT?;");
             else
                 resp = volt.ToString();
-            return double.Parse(resp);
+            return double.Parse(resp, System.Globalization.CultureInfo.GetCultureInfo("en-US"));
         }
 
         public double GetActualVolt()
@@ -96,7 +99,7 @@ namespace Knv.Instr.PSU.RMX4104
                 resp = Query(":MEAS:VOLT?;");
             else
                 resp = "0";
-            return double.Parse(resp);
+            return double.Parse(resp, System.Globalization.CultureInfo.GetCultureInfo("en-US"));
         }
 
         public double GetActualCurrent()
@@ -106,7 +109,7 @@ namespace Knv.Instr.PSU.RMX4104
                 resp = Query(":MEAS:CURR?");
             else
                 resp = "0";
-            return double.Parse(resp);
+            return double.Parse(resp, System.Globalization.CultureInfo.GetCultureInfo("en-US"));
         }
 
         public List<string> GetErrors()
@@ -128,16 +131,13 @@ namespace Knv.Instr.PSU.RMX4104
 
         public string Query(string request)
         {
-            LogWriteLine($"Tx:{request}");
             _session.RawIO.Write(request + "\n");
             var response = _session.RawIO.ReadString();
-            LogWriteLine($"Rx:{response}");
             return response; 
         }
 
         public void Write(string request)
         {
-            LogWriteLine($"Tx:{request}");
             _session.RawIO.Write(request + "\n");
         }
 
@@ -156,7 +156,6 @@ namespace Knv.Instr.PSU.RMX4104
             {
                 _resourceManager?.Dispose();
                 _session?.Dispose();
-                LogWriteLine("Instance disposed.");
             }
             _disposed = true;
 

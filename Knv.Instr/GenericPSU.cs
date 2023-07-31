@@ -24,6 +24,11 @@
             _psu.SetOutput(volt, current, onOff);
         }
 
+        public void OnOff(bool enable)
+        {
+            _psu.OnOff(enable);
+        }   
+
         public double GetActualVolt()
         {
             return _psu.GetActualVolt();
@@ -39,10 +44,6 @@
             return _psu.SetOutputGetActualVolt(volt, current);
         }
 
-        public void LogSave(string directory, string prefix)
-        {
-            _psu.LogSave(directory, prefix);
-        }
 
         public void Dispose()
         {

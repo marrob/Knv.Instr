@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instr.SMU.PXI4139", "Kn
 		{DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB} = {DBA5FA64-F769-4CBE-B77E-C3A7E5AD8FCB}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Knv.Instr.GEN.PXI5413", "Knv.Instr.GEN.PXI5413\Knv.Instr.GEN.PXI5413.csproj", "{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -132,6 +134,14 @@ Global
 		{E0387AF1-5EB6-484F-852D-DFEC70CD503B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E0387AF1-5EB6-484F-852D-DFEC70CD503B}.Release|x86.ActiveCfg = Release|Any CPU
 		{E0387AF1-5EB6-484F-852D-DFEC70CD503B}.Release|x86.Build.0 = Release|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Debug|x86.Build.0 = Debug|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Release|x86.ActiveCfg = Release|Any CPU
+		{FA5790EA-5FDB-4BB9-865B-1FBD3B5178C2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

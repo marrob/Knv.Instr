@@ -51,9 +51,11 @@
     <Compile Include="Constants.cs" />
     <Compile Include="GenericDMM.cs" />
     <Compile Include="GenericLoad.cs" />
+    <Compile Include="GenericGEN.cs" />
     <Compile Include="GenericSMU.cs" />
     <Compile Include="GenericPSU.cs" />
     <Compile Include="IDigitalMultiMeter.cs" />
+    <Compile Include="IGenerator.cs" />
     <Compile Include="ISourceMeasureUnits.cs" />
     <Compile Include="IElectronicsLoad.cs" />
     <Compile Include="IPowerSupply.cs" />
