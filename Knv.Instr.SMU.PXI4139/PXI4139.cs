@@ -90,10 +90,10 @@ namespace Knv.Instr.SMU.PXI4139
             _session.Outputs[SelectedChannelName].Source.Output.Function = DCPowerSourceOutputFunction.DCCurrent;
 
             _session.Outputs[SelectedChannelName].Source.Current.CurrentLevelAutorange = DCPowerSourceCurrentLevelAutorange.Off;
-            _session.Outputs[SelectedChannelName].Source.Current.CurrentLevelRange = VoltageRangeNameToValue(voltageLimitRangeName);
+            _session.Outputs[SelectedChannelName].Source.Current.CurrentLevelRange = CurrentRangeNameToValue(currentRangeName);  
 
             _session.Outputs[SelectedChannelName].Source.Current.VoltageLimitAutorange = DCPowerSourceVoltageLimitAutorange.Off;
-            _session.Outputs[SelectedChannelName].Source.Current.VoltageLimitRange = CurrentRangeNameToValue(currentRangeName);
+            _session.Outputs[SelectedChannelName].Source.Current.VoltageLimitRange = VoltageRangeNameToValue(voltageLimitRangeName);
 
             _session.Outputs[SelectedChannelName].Source.TransientResponse = DCPowerSourceTransientResponse.Normal;
 

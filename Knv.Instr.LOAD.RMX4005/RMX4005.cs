@@ -11,13 +11,13 @@ namespace Knv.Instr.LOAD.RMX4005
         readonly bool _simulation = false;
         readonly IVisaSession _session = null;
 
-        public RMX4005(string visaName, bool simulation)
+        public RMX4005(string resourceName, bool simulation)
         {
             _simulation = simulation;
             if (_simulation)
                 _session = null;
             else 
-                _session = new ResourceManager().Open(visaName);
+                _session = new ResourceManager().Open(resourceName);
         }
         public void Config(int channel, string range, double current)
         {
@@ -74,7 +74,7 @@ namespace Knv.Instr.LOAD.RMX4005
             if (_simulation)
                 return "Simulated RMX4005";
             else
-                return Query($"ID?");
+                return Query($"IDN?");
         }
 
         public string Query(string request)

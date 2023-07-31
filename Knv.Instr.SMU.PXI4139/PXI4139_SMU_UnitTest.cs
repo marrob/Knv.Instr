@@ -96,6 +96,25 @@ namespace Knv.Instr.SMU.PXI4139
             }
         }
 
+        [Test]
+        public void CurrentSource_OpenCircuit()
+        {
+            double volts;
+            using (var smu = new PXI4139(RESOURCE_NAME, simulation: false))
+            {
+                var resp = smu.Identify();
+                Assert.IsTrue(resp.Contains("National Instruments"));
+
+                smu.ConfigCurrentSource("6V", "10mA");
+                smu.SetCurrentSource(2.5, 0.005);
+                smu.OnOff(enable: true);
+
+                volts = smu.GetActualVolt();
+                Assert.Less(volts, 2.51);
+                Assert.Greater(volts, 2.49);
+            }
+        }
+
     }
 
 

@@ -6,12 +6,12 @@ namespace Knv.Instr.DMM.PXI4082
     [TestFixture]
     internal class PXI4082_DMM_UnitTest
     {
-        string VISA_NAME = "J3_DMM";
+        string RESOURCE_NAME = "J3_DMM";
 
         [Test]
         public void Identify()
         {
-            using (var dmm = new PXI4082(VISA_NAME, simulation: false))
+            using (var dmm = new PXI4082(RESOURCE_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
@@ -21,7 +21,7 @@ namespace Knv.Instr.DMM.PXI4082
         [Test]
         public void MeasureVoltSmallestRange()
         {
-            using (var dmm = new PXI4082(VISA_NAME, simulation: false))
+            using (var dmm = new PXI4082(RESOURCE_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
@@ -36,7 +36,7 @@ namespace Knv.Instr.DMM.PXI4082
         [Test]
         public void Measure2WireResistance()
         {
-            using (var dmm = new PXI4082(VISA_NAME, simulation: false))
+            using (var dmm = new PXI4082(RESOURCE_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
