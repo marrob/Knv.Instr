@@ -39,8 +39,8 @@ namespace Knv.Instr.SMU.PXI4139
                 var resp = smu.Identify();
                 Assert.IsTrue(resp.Contains("National Instruments"));
                 smu.ConfigVoltageSource("600mV", "100uA");
-                smu.SetVoltageSource(voltage:0.05, current:0.00001);
-                smu.SetVoltageSource(voltage: 0.06, current: 0.00001);
+                smu.SetVoltageSource(voltageLevel:0.05, currentLimit:0.00001);
+                smu.SetVoltageSource(voltageLevel: 0.06, currentLimit: 0.00001);
                 smu.OnOff(enable: true);
             }
         }
@@ -54,10 +54,10 @@ namespace Knv.Instr.SMU.PXI4139
                 Assert.IsTrue(resp.Contains("National Instruments"));
 
                 smu.ConfigVoltageSource("600mV", "100uA");
-                smu.SetVoltageSource(voltage: 0.05, current: 0.00001);
+                smu.SetVoltageSource(voltageLevel: 0.05, currentLimit: 0.00001);
 
                 smu.ConfigVoltageSource("6V", "10mA");
-                smu.SetVoltageSource(voltage: 3.0, current: 0.005);
+                smu.SetVoltageSource(voltageLevel: 3.0, currentLimit: 0.005);
 
                 smu.OnOff(enable: true);
                 smu.OnOff(enable: false);
@@ -75,14 +75,14 @@ namespace Knv.Instr.SMU.PXI4139
                 Assert.IsTrue(resp.Contains("National Instruments"));
 
                 smu.ConfigVoltageSource("6V", "1mA");
-                smu.SetVoltageSource(voltage: 3.0, current: 0.0005);
+                smu.SetVoltageSource(voltageLevel: 3.0, currentLimit: 0.0005);
                 smu.OnOff(enable: true);
                 volts = smu.GetActualVolt();
                 Assert.Less(volts, 3.1);
                 Assert.Greater(volts, 2.9);
 
                 smu.ConfigVoltageSource("60V", "1mA");
-                smu.SetVoltageSource(voltage: 10.0, current: 0.0005);
+                smu.SetVoltageSource(voltageLevel: 10.0, currentLimit: 0.0005);
                 volts = smu.GetActualVolt();
                 Assert.Less(volts, 10.1);
                 Assert.Greater(volts, 9.9);

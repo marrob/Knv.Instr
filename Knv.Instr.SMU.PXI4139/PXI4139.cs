@@ -72,77 +72,74 @@ namespace Knv.Instr.SMU.PXI4139
             return $"{_session.Identity.InstrumentManufacturer}, {_session.Identity.InstrumentModel}, {_session.Identity.Revision }";
         }
 
-        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV")
+
+        #region Current Source
+
+        public void ConfigCurrentSource(string voltageLimitRangeName = "6V", string currentRangeName = "1mA")
         {
-            ConfigVoltageSource(voltageRangeName, currentLimitRangeName, "Local");
+            ConfigCurrentSource(voltageLimitRangeName, currentRangeName, "Local");
         }
 
-
-        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV", string sense = "Local")
+        public void ConfigCurrentSource(string voltageLimitRangeName = "6V", string currentRangeName = "1mA", string sense = "Local")
         {
             if (_simulation)
                 return;
 
-            /*** Voltage ***/
-            string[] voltageItems;
-            if (!Ranges.TryGetValue(VoltageLevelRange, out voltageItems))
-                throw new ArgumentException($" The {VoltageLevelRange} is not supported. Supported functions: {string.Join(",", Ranges.Keys)}");
+            _session.Control.Abort();
 
-            if (!voltageItems.Contains(voltageRangeName))
-                throw new ArgumentException($" The {voltageRangeName} is not supported range. Supported ranges: {string.Join(",", voltageItems)}");
+            _session.Outputs[SelectedChannelName].Source.Output.Function = DCPowerSourceOutputFunction.DCCurrent;
 
-            double voltageRange = 0.0;
-            switch (voltageRangeName)
-            { 
-                case "60V": voltageRange = 60.0; break;
-                case "6V": voltageRange = 6.0; break;
-                case "600mV": voltageRange = 0.6; break;
-            }
+            _session.Outputs[SelectedChannelName].Source.Current.CurrentLevelAutorange = DCPowerSourceCurrentLevelAutorange.Off;
+            _session.Outputs[SelectedChannelName].Source.Current.CurrentLevelRange = VoltageRangeNameToValue(voltageLimitRangeName);
+
+            _session.Outputs[SelectedChannelName].Source.Current.VoltageLimitAutorange = DCPowerSourceVoltageLimitAutorange.Off;
+            _session.Outputs[SelectedChannelName].Source.Current.VoltageLimitRange = CurrentRangeNameToValue(currentRangeName);
+
+            _session.Outputs[SelectedChannelName].Source.TransientResponse = DCPowerSourceTransientResponse.Normal;
+
+            SetSense(sense);
+        }
+
+        public void SetCurrentSource(double voltageLimit, double currentLevel)
+        {
+            if (_simulation)
+                return;
 
             _session.Control.Abort();
+            _session.Outputs[SelectedChannelName].Source.Current.CurrentLevel = currentLevel;
+            _session.Outputs[SelectedChannelName].Source.Current.VoltageLimit = voltageLimit;
+            _session.Control.Initiate();
+            // Wait for output to settle.
+            _session.Events.SourceCompleteEvent.WaitForEvent(new PrecisionTimeSpan(21.0));
+        }
+        #endregion
+        
+        #region Voltage Source
+
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mA")
+        {
+            ConfigVoltageSource(voltageRangeName, currentLimitRangeName, "Local");
+        }
+
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mA", string sense = "Local")
+        {
+            if (_simulation)
+                return;
+
+            _session.Control.Abort();
+
             _session.Outputs[SelectedChannelName].Source.Output.Function = DCPowerSourceOutputFunction.DCVoltage;
+
             _session.Outputs[SelectedChannelName].Source.Voltage.VoltageLevelAutorange = DCPowerSourceVoltageLevelAutorange.Off;
-            _session.Outputs[SelectedChannelName].Source.Voltage.VoltageLevelRange = voltageRange;
+            _session.Outputs[SelectedChannelName].Source.Voltage.VoltageLevelRange = VoltageRangeNameToValue(voltageRangeName);
             
-
-            /*** Current ***/
-            string[] currentItems;
-            if (!Ranges.TryGetValue(CurrentLimitRange, out currentItems))
-                throw new ArgumentException($" The {CurrentLimitRange} is not supported. Supported functions: {string.Join(",", Ranges.Keys)}");
-
-            if (!currentItems.Contains(currentLimitRangeName))
-                throw new ArgumentException($" The {CurrentLimitRange} is not supported range. Supported ranges: {string.Join(",", currentItems)}");
-
-            double currentRange = 0.0;
-            switch (currentLimitRangeName)
-            {
-                case "3A": currentRange = 3.0; break;
-                case "1A": currentRange = 1.0; break;
-                case "100mA": currentRange = 0.1; break;
-                case "10mA": currentRange = 0.01; break;
-                case "1mA": currentRange = 0.001; break;
-                case "100uA": currentRange = 0.0001; break;
-                case "10uA": currentRange = 0.00001; break;
-                case "1uA": currentRange = 0.000001; break;
-            }
             _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimitAutorange = DCPowerSourceCurrentLimitAutorange.Off;
-            _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimitRange = currentRange;
+            _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimitRange = CurrentRangeNameToValue(currentLimitRangeName);
+
             _session.Outputs[SelectedChannelName].Source.TransientResponse = DCPowerSourceTransientResponse.Normal;
 
 
-            sense = sense.ToUpper().Trim();
-
-            switch (sense)
-            { 
-                case "LOCAL":
-                    _session.Outputs[SelectedChannelName].Measurement.Sense = DCPowerMeasurementSense.Local;
-                    break;  
-                case "REMOTE":
-                    _session.Outputs[SelectedChannelName].Measurement.Sense = DCPowerMeasurementSense.Remote;
-                    break; 
-                default:
-                    throw new ArgumentException($" The {sense} is not supported. Supported functions: Local, Remote");
-            }
+            SetSense(sense);
 
             //TODO: ApertureTime
             //_session.Outputs[SelectedChannelName].Measurement.ConfigureApertureTime(1, DCPowerMeasureApertureTimeUnits.PowerLineCycles);
@@ -150,21 +147,24 @@ namespace Knv.Instr.SMU.PXI4139
 
 
       
-        public void SetVoltageSource(double voltage, double current)
+        public void SetVoltageSource(double voltageLevel, double currentLimit)
         {
             if (_simulation)
                 return;
 
             _session.Control.Abort();
-            _session.Outputs[SelectedChannelName].Source.Voltage.VoltageLevel = voltage;
-            _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimit = current;
+            _session.Outputs[SelectedChannelName].Source.Voltage.VoltageLevel = voltageLevel;
+            _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimit = currentLimit;
             _session.Control.Initiate();
             // Wait for output to settle.
             _session.Events.SourceCompleteEvent.WaitForEvent(new PrecisionTimeSpan(21.0));
 
         }
 
-      
+        #endregion
+
+
+
         public void OnOff(bool enable)
         {
             if (_simulation)
@@ -187,6 +187,71 @@ namespace Knv.Instr.SMU.PXI4139
                 return _session.Measurement.Measure(SelectedChannelName).CurrentMeasurements[0];
             else
                 return new Random().NextDouble();
+        }
+
+        internal void SetSense(string sense)
+        {
+            if (_simulation)
+                return;
+
+            sense = sense.ToUpper().Trim();
+
+            switch (sense)
+            {
+                case "LOCAL":
+                    _session.Outputs[SelectedChannelName].Measurement.Sense = DCPowerMeasurementSense.Local;
+                    break;
+                case "REMOTE":
+                    _session.Outputs[SelectedChannelName].Measurement.Sense = DCPowerMeasurementSense.Remote;
+                    break;
+                default:
+                    throw new ArgumentException($" The {sense} is not supported. Supported functions: Local, Remote");
+            }
+        }
+
+        internal double VoltageRangeNameToValue(string rangeName)
+        {
+            /*** Voltage ***/
+            string[] voltageItems;
+            if (!Ranges.TryGetValue(VoltageLevelRange, out voltageItems))
+                throw new ArgumentException($" The {VoltageLevelRange} is not supported. Supported functions: {string.Join(",", Ranges.Keys)}");
+
+            if (!voltageItems.Contains(rangeName))
+                throw new ArgumentException($" The {rangeName} is not supported range. Supported ranges: {string.Join(",", voltageItems)}");
+           
+            double voltageRange = 0.0;
+            switch (rangeName)
+            {
+                case "60V": voltageRange = 60.0; break;
+                case "6V": voltageRange = 6.0; break;
+                case "600mV": voltageRange = 0.6; break;
+            }
+            return voltageRange;
+        }
+
+        internal double CurrentRangeNameToValue(string rangeName)
+        {
+            /*** Current ***/
+            string[] currentItems;
+            if (!Ranges.TryGetValue(CurrentLimitRange, out currentItems))
+                throw new ArgumentException($" The {CurrentLimitRange} is not supported. Supported functions: {string.Join(",", Ranges.Keys)}");
+
+            if (!currentItems.Contains(rangeName))
+                throw new ArgumentException($" The {CurrentLimitRange} is not supported range. Supported ranges: {string.Join(",", currentItems)}");
+
+            double currentRange = 0.0;
+            switch (rangeName)
+            {
+                case "3A": currentRange = 3.0; break;
+                case "1A": currentRange = 1.0; break;
+                case "100mA": currentRange = 0.1; break;
+                case "10mA": currentRange = 0.01; break;
+                case "1mA": currentRange = 0.001; break;
+                case "100uA": currentRange = 0.0001; break;
+                case "10uA": currentRange = 0.00001; break;
+                case "1uA": currentRange = 0.000001; break;
+            }
+            return currentRange;
         }
 
         private void ChannelCheck(string channelName)

@@ -9,19 +9,33 @@
             _smu = smuInstance;
         }
 
-        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV")
+        public void ConfigCurrentSource(string voltageLimitRangeName = "6V", string currentRangeName = "1mA")
+        { 
+            _smu.ConfigCurrentSource(voltageLimitRangeName, currentRangeName);
+        }
+        public void ConfigCurrentSource(string voltageLimitRangeName = "6V", string currentRangeName = "1mA", string sense = "Local")
+        {
+            _smu.ConfigCurrentSource(voltageLimitRangeName, currentRangeName, sense);
+        }
+
+        public void SetCurrentSource(double voltageLimit, double currentLevel)
+        { 
+            _smu.SetCurrentSource(voltageLimit, currentLevel);
+        }
+
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mA")
         { 
             _smu.ConfigVoltageSource(voltageRangeName, currentLimitRangeName);
         } 
 
-        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mV", string sense = "Local")
+        public void ConfigVoltageSource(string voltageRangeName = "6V", string currentLimitRangeName = "100mA", string sense = "Local")
         {
             _smu.ConfigVoltageSource(voltageRangeName, currentLimitRangeName, sense);
         }
 
-        public void SetVoltageSource(double voltage, double current)
+        public void SetVoltageSource(double voltageLevel, double currentLimit)
         { 
-            _smu.SetVoltageSource(voltage, current);
+            _smu.SetVoltageSource(voltageLevel, currentLimit);
         }
 
         public void OnOff(bool enable)
