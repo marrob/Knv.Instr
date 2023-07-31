@@ -11,22 +11,64 @@ namespace Knv.Instr.LOAD.RMX4005
         [Test]
         public void Identify()
         {
+            /*
+             * "NATIONAL INSTRUMENTS,RMX-4002,GEV200429,V2.16"
+             */
             using (var load = new RMX4005(RESOURCE_NAME, simulation: false))
             {
-                var resp = load.Identify();
-                Assert.IsTrue(resp.Contains("National Instruments"));
+                var resp = load.Identify().ToUpper();
+                Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
             }
         }
 
         [Test]
-        public void MeasureVoltSmallestRange()
+        public void ConfigLoad_LowRange_ConstantCurrent()
         {
             using (var load = new RMX4005(RESOURCE_NAME, simulation: false))
             {
-                var resp = load.Identify();
-                Assert.IsTrue(resp.Contains("National Instruments"));
+                var resp = load.Identify().ToUpper();
+                Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
+
+                load.Config(mode: "CCL", channel: "1", current: 1.0);
+                load.OnOff(enable: true);
+
+                double current = load.GetActualCurrent();
+                Assert.Less(current, 0.1);
+                Assert.Greater(current, -0.1);
 
 
+                double voltage = load.GetActualVolt();
+                Assert.Less(voltage, 0.1);
+                Assert.Greater(voltage, -0.1);
+
+                var errors = load.GetErrors();
+                Assert.AreEqual(0 , errors.Count);
+            }
+        }
+
+
+        [Test]
+        public void ConfigLoad_HighRange_ConstantCurrent()
+        {
+            using (var load = new RMX4005(RESOURCE_NAME, simulation: false))
+            {
+                var resp = load.Identify().ToUpper();
+                Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
+
+                load.Config(mode: "CCH", channel: "1", current: 69.0);
+                load.OnOff(enable: true);
+
+                double current = load.GetActualCurrent();
+                Assert.Less(current, 0.1);
+                Assert.Greater(current, -0.1);
+
+
+                double voltage = load.GetActualVolt();
+                Assert.Less(voltage, 0.1);
+                Assert.Greater(voltage, -0.1);
+
+                var errors = load.GetErrors();
+                Assert.AreEqual(0, errors.Count);
             }
         }
     }

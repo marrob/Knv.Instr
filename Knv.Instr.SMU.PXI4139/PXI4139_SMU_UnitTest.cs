@@ -13,6 +13,9 @@ namespace Knv.Instr.SMU.PXI4139
         [Test]
         public void Identify()
         {
+            /*
+             * National Instruments, NI PXIe-4139, 21.8.0
+             */
             using (var smu = new PXI4139(RESOURCE_NAME, simulation: false))
             {
                 var resp = smu.Identify();

@@ -8,13 +8,17 @@ namespace Knv.Instr.DMM.PXI4082
     {
         string RESOURCE_NAME = "J3_DMM";
 
+
         [Test]
         public void Identify()
         {
+            /*
+             * NATIONAL INSTRUMENTS, NI PXIE-4082, 20B5C9B 
+             */
             using (var dmm = new PXI4082(RESOURCE_NAME, simulation: false))
             {
-                var resp = dmm.Identify();
-                Assert.IsTrue(resp.Contains("National Instruments"));
+                var resp = dmm.Identify().ToUpper();
+                Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
             }
         }
 

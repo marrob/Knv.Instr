@@ -14,9 +14,9 @@
             return _load.Identify();
         }
 
-        public void Config(int channel, string range, double current)
+        public void Config(string mode = "CCL", string channel = "1", double current = 2.0)
         {
-            _load.Config(channel, range, current);
+            _load.Config(mode, channel, current);
         }
 
         public void OnOff(bool enable)

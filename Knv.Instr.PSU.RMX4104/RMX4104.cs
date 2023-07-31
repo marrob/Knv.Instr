@@ -20,6 +20,7 @@
 namespace Knv.Instr.PSU.RMX4104
 {
     using System;
+    using System.Collections.Generic;
     using Ivi.Visa;
     using NationalInstruments.Visa;
     public class RMX4104 : Log, IPowerSupply, IDisposable
@@ -39,16 +40,16 @@ namespace Knv.Instr.PSU.RMX4104
         /// Ha nem volt kipacsolva va táp akkor itt kinn van a feszültsége a kimeneten
         /// 
         /// </summary>
-        /// <param name="visaName">J24_PPS_1,J24_PPS_2,J24_PPS_3</param>
+        /// <param name="resourceName">J24_PPS_1,J24_PPS_2,J24_PPS_3</param>
         /// <param name="simulation"></param>
-        public RMX4104(string visaName, bool simulation)
+        public RMX4104(string resourceName, bool simulation)
         {
             _simulation = simulation;
 
             if (!_simulation)
             {
                 _resourceManager = new ResourceManager();
-                _session = (MessageBasedSession)_resourceManager.Open(visaName);
+                _session = (MessageBasedSession)_resourceManager.Open(resourceName);
                 LogWriteLine("Instance created.");
 
                 Write("*RST;");
@@ -108,19 +109,21 @@ namespace Knv.Instr.PSU.RMX4104
             return double.Parse(resp);
         }
 
-        public string GetErrors()
+        public List<string> GetErrors()
         {
-            string resp;
-            if (!_simulation)
+            var errors = new List<string>();
+            if (_simulation)
+                return errors;
+
+            for (int i = 0; i < 10; i++)
             {
-                string request = ":SYST:ERR?";
-                resp = Query(request);
+                var resp = Query(":SYST:ERR?;");
+                if (resp.ToUpper().Contains("NO ERROR"))
+                    break;
+                else
+                    errors.Add(resp);
             }
-            else
-            {
-                resp = "None";
-            }
-            return resp;
+            return errors;
         }
 
         public string Query(string request)
