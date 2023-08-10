@@ -1,7 +1,6 @@
 ﻿
 namespace Knv.Instr.GEN.PXI5413
 {
-    using Knv.Instr.GEN.PXI5413;
     using NUnit.Framework;
 
     [TestFixture]
@@ -19,7 +18,6 @@ namespace Knv.Instr.GEN.PXI5413
             {
                 var resp = gen.Identify().ToUpper();
                 Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
-
             }
         }
 

@@ -221,7 +221,6 @@ namespace Knv.Instr.DMM.PXI4082
                 _session?.Dispose();
             }
             _disposed = true;
-
         }
 
     }

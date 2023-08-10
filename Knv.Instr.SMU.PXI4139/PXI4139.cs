@@ -38,7 +38,6 @@ namespace Knv.Instr.SMU.PXI4139
     using System.Collections.Generic;
     using System.Linq;
     using NationalInstruments;
-    using Microsoft.SqlServer.Server;
 
     public class PXI4139 : ISourceMeasureUnits
     {

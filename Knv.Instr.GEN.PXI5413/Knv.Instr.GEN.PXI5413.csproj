@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ivi.Driver, Version=1.4.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL">
+    <Reference Include="Ivi.Driver, Version=1.5.0.0, Culture=neutral, PublicKeyToken=a128c98f1d7717c1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\IviFoundationSharedComponents 2.0.0\Ivi.Driver.dll</HintPath>
     </Reference>
@@ -43,17 +43,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\IviFoundationSharedComponents 2.0.0\Ivi.Fgen.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.Common, Version=19.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+    <Reference Include="NationalInstruments.ModularInstruments.NIFgen.Fx45, Version=21.3.0.49297, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="NationalInstruments.ModularInstruments.Common, Version=21.8.45.49226, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NationalInstruments.ModularInstruments.Common(x86) 22.5.0\NationalInstruments.ModularInstruments.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="NationalInstruments.ModularInstruments.NIFgen.Fx45, Version=21.8.0.49444, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NationalInstruments.ModularInstruments.NIFgen 21.8.0\NationalInstruments.ModularInstruments.NIFgen.Fx45.dll</HintPath>
+      <HintPath>..\lib\NationalInstruments.ModularInstruments.NIFgen(x86) 21.3.0\NationalInstruments.ModularInstruments.NIFgen.Fx45.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.13.3.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.13.3\lib\net45\nunit.framework.dll</HintPath>

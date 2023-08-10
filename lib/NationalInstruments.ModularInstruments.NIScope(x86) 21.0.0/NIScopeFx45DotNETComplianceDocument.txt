@@ -1,0 +1,127 @@
+IVI Compliance Category:
+-----------------------
+
+IVI.NET IviScope Specific Instrument Driver
+Class Specification version:           4.1
+IVI Generation:                        IVI-2014
+Group Capabilities Supported:
+
+Base                  = Supported
+Interpolation         = Not Supported
+TVTrigger             = Supported
+RuntTrigger           = Supported
+GlitchTrigger         = Supported
+WidthTrigger          = Supported
+AcLineTrigger         = Not Supported
+WaveformMeas          = Supported
+MinMaxWaveform        = Not Supported
+ProbeAutoSense        = Not Supported
+ContinuousAcquisition = Not Supported
+AverageAcquisition    = Not Supported
+SampleMode            = Supported
+TriggerModifier       = Not Supported
+AutoSetup             = Supported
+
+
+
+Optional Features:
+-----------------
+
+Interchangeability Checking           = False
+State Caching                         = True
+Coercion Recording                    = False
+
+
+
+Driver Identification:
+---------------------
+
+Driver Revision:                       21.0
+Driver Vendor:                         National Instruments
+Component Identifier:                  niScope
+Description:                           National Instruments High Speed Digitizers Oscilloscope
+                                       Instrument Driver
+
+
+
+Hardware Information:
+--------------------
+
+Instrument Manufacturer:               National Instruments
+Supported Instrument Models:           NI PCI-5105, NI PXI-5105, NI PXIe-5105, NI PCI-5114,
+                                       NI PXI-5114, NI PXIe-5110, NI PXIe-5111, NI PXIe-5113,
+                                       NI PXIe-5114, NI PCI-5122, NI PXI-5122, NI PXIe-5122,
+                                       NI PCI-5124, NI PXI-5124, NI USB-5132, NI USB-5133,
+                                       NI PCI-5142, NI PXI-5142, NI PCI-5152, NI PXI-5152,
+                                       NI PCI-5153, NI PXI-5153, NI PCI-5154, NI PXI-5154,
+                                       NI PCIe-5155, NI PXIe-5160 (2CH), NI PXIe-5160 (4CH),
+                                       NI PXIe-5162 (2CH), NI PXIe-5162 (4CH), NI PXIe-5163,
+                                       NI PXIe-5164, NI PXIe-5170R (4CH), NI PXIe-5170R (8CH),
+                                       NI PXIe-5171R (8CH), NI PXIe-5172 (4CH - 325T),
+                                       NI PXIe-5172 (8CH - 325T), NI PXIe-5172 (8CH - 410T),
+                                       NI PXIe-5185, NI PXIe-5186, NI PXIe-5622,
+                                       NI PXIe-5622 (25MHz DDC), NI PCI-5922, NI PXI-5922,
+                                       NI PXI-5900
+Supported Bus Interfaces:              PCI, PCIe, PXI, PXIe, USB
+
+
+
+32-bit Software Information:
+---------------------------
+
+Supported Operating Systems:           Windows 7 (32-bit), Windows 8 (32-bit), Windows 10 (32-bit),
+                                       Windows 7 (64-bit), Windows 8 (64-bit), Windows 10 (64-bit),
+                                       Windows Server 2008 R2 (64-bit),
+                                       Windows Server 2012 R2 (64-bit)
+Support Software Required:             None
+.NET Minimum Runtime Version:          4.5
+.NET Target Framework Version:         4.5
+Source Code Availability:              Source code is not available
+
+
+
+64-bit Software Information:
+---------------------------
+
+Supported Operating Systems:           Windows 7 (64-bit), Windows 8 (64-bit), Windows 10 (64-bit),
+                                       Windows Server 2008 R2 (64-bit),
+                                       Windows Server 2012 R2 (64-bit)
+Support Software Required:             None
+.NET Minimum Runtime Version:          4.5
+.NET Target Framework Version:         4.5
+Source Code Availability:              Source code is not available
+
+
+
+Unit Testing:
+------------
+
+Test Setup 1:
+
+Instrument Model (Firmware Revision):  NI PXIe-5122 (1), NI PXIe-5113 (1)
+Bus Interface:                         PXIe
+Operating System (Service Pack):       Windows 7 (SP1)
+OS Bitness/Application Bitness:        64-bit/64-bit
+IVI Shared Components Version:         2.6
+
+
+
+Driver Installation Testing:
+---------------------------
+
+Operating System (Service Pack):       Windows 7 (SP1), Windows 8, Windows 10
+OS Bitness:                            32-bit, 64-bit
+
+
+
+Driver Test Failures:
+--------------------
+
+Known Issues:                          Refer to the NI-SCOPE Readme File for more information about
+                                       known issues
+
+Note: National Instruments has evaluated and/or tested this driver to verify that it meets all
+applicable requirements of the IVI specifications at the time this compliance document was submitted
+to the IVI Foundation and agrees to abide by the dispute arbitration provisions in
+Section 8 of IVI-1.2: Operating Procedures, if the IVI Foundation finds this driver to be
+non-conformant.

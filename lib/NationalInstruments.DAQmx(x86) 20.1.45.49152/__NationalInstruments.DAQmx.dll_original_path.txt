@@ -1,1 +1,0 @@
-C:\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies (64-bit)\20.1.45.49152\NationalInstruments.DAQmx.dll

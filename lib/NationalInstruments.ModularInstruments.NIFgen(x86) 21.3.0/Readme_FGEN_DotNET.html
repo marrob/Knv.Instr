@@ -1,0 +1,463 @@
+<html>
+  <head>
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>NI-FGEN .NET Class Library 19.1 Readme</title>
+    <meta http-equiv="Content-Type" content="text/html">
+    <style>
+        body, th, td
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 0.7em;
+            color: black;
+        }
+        
+        table
+        {
+            margin-top: .6em;
+            margin-bottom: .3em;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th
+        {
+            border: 1px solid black;
+            font-weight: bold;
+            padding: 4px 6px;
+            text-align: left;
+            vertical-align: bottom;
+        }
+
+        td
+        {
+            border: 1px solid black;
+            vertical-align: top;
+            padding: 4px 6px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        h1
+        {
+            margin-top: 3pt;
+            font-weight: bold;
+            font-size: 1.4em;
+            margin-bottom: 3pt;
+        }
+        
+        h2
+        {
+            margin-top: 9pt;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 3pt;
+            text-decoration: underline;
+        }
+        
+        h3
+        {
+            margin-top: 6pt;
+            font-weight: bold;
+            font-size: 1.0em;
+            margin-bottom: 3pt;
+        }
+        
+        h4
+        {
+            margin-top: 3pt;
+            font-weight: bold;
+            font-size: 1.0em;
+            margin-bottom: 3pt;
+        }
+        
+        li
+        {
+            margin-top: 3pt;
+            margin-bottom: 3pt;
+        }
+        
+        .preliminary
+        {
+            color: #0000ff;
+        }
+        
+        .code, code
+        {
+            font: 100% Courier New, Courier, Monospace;
+        }
+        
+        .lang
+        {
+            font-family: Verdana, Arial, Helvetica, sans-serif;
+            font-size: 80%;
+            font-weight: normal;
+        }
+        </style>
+  </head>
+  <body topmargin="0">
+    <h1>NI-FGEN .NET Class Library 19.1 Readme</h1>
+    <p>
+
+          <p>
+            The .NET class library for NI-FGEN  provides an IVI class-compliant .NET API interface to the underlying driver API.
+          </p>
+
+          <p>         
+              This readme documents the NI-FGEN .NET class library, organized into the following sections: 
+              </p>
+
+            <ul>       
+            
+                <li>
+                    <a href="#requirements">System Requirements</a>
+                </li>
+              <li>
+                <a href="#install">Installation Instructions</a>
+              </li>
+              <li>
+                <a href="#deployment">Deployment</a>
+              </li>
+		    <li>
+                <a href="#security"> Product Security and Critical Updates</a>
+              </li>
+           
+              <li>
+			<a href="#knownissues">Known Issues in NI-FGEN .NET API 
+    </a>
+		</li>
+
+              <li><a href="#accessinghelp">Accessing the Help</a>
+              </li>
+                <li> <a href="#findingexamples">Finding Examples</a>
+                </li>
+                  <li> <a href="#automatinginstallation">Automating the Installation of NI Products</a>
+                  </li>
+              <li>
+                <a href="#NIwin10">How to Use NI Software with Microsoft Windows 10</a>
+              </li>
+              <li>
+                <a href="#NIwin8">How to Use NI Software with Microsoft Windows 8.1</a>
+              </li>
+
+              <li>   <a href="#legal">Legal Information</a>
+              </li>
+                        </ul>
+         
+        </p>
+    <p>
+                <h1><a name="requirements">System Requirements</a></h1>
+                <p>
+                    This section lists the system requirements and installation instructions for the NI-FGEN .NET class library.
+                </p>
+  
+            <p>To use NI-FGEN .NET class library support, your computer must have the following:</p>
+            <ul>
+              
+
+              <li>
+                Microsoft operating system:
+                <ul>
+                  <li>
+                    Windows 10/8.1<sup>1</sup>/7 SP1<sup>2</sup>
+                  </li>
+                 
+                  <li>
+                 Windows Server 2012 R2<sup>1</sup>
+                </li>
+              <li>
+                    Windows Server 2008 R2 SP1<sup>2</sup>
+                  </li>
+                
+            
+                </ul>
+
+              </li>
+
+
+              <li>Microsoft .NET Framework 4.0 or later </li>
+
+
+            
+
+
+
+              <li>Microsoft Internet Explorer 6.0 or later</li>
+       
+            </ul>
+            <blockquote><strong>Note</strong>&nbsp;&nbsp;&nbsp;
+              In 2016, NI
+              dropped support for Windows Vista, Windows XP, Windows Server 2003, and installations of Windows 7 without any service packs. The NI-FGEN .NET Class Library
+              will not install or run on an unsupported OS. You cannot deploy or distribute applications that use the NI-FGEN .NET Class Library
+              to an unsupported OS. Additionally, after installing the NI-FGEN .NET Class Library, you cannot use any installers built on this computer with any version of LabVIEW, LabWindows™/CVI™, NI TestStand™, or Measurement Studio on an unsupported OS.
+              <p>
+                For more information about the changes to our OS support for 2016, refer to KB 79UC78LS, <a target="_blank" href="http://digital.ni.com/public.nsf/allkb/F73E807066D3309086257FC40063DD50?OpenDocument">Why Does my LabVIEW, LabWindows/CVI, Measurement Studio, or TestStand Built Installer Fail on Windows XP/Vista and Server 2003?</a>.
+              </p>
+            </blockquote>
+            <blockquote><strong>Note</strong>&nbsp;&nbsp;&nbsp;
+              Support for Windows 32-bit operating systems may require disabling physical address extension (PAE). To learn how this might affect your system and what actions you might need to take, visit <a target="_blank" href="http://www.ni.com/info">ni.com/info</a>  and enter the Info Code <code>PAESupport</code>.
+            </blockquote>
+            
+            
+            <p>
+              <sup>1</sup>NI software installs VC2015 Runtime and .NET 4.6.2. Windows 8.1 and Windows Server 2012 R2 require Microsoft updates to support these items. Refer to Microsoft <a target="_blank" href="https://technet.microsoft.com/en-us/library/security/2919442">KB2919442</a> and <a target="_blank" href="https://technet.microsoft.com/en-us/library/security/2919355">KB2919355</a> for more information about how to install these updates.
+            </p>
+            <p>
+              <sup>2</sup>NI software is signed with a SHA-256 certificate. Windows 7 SP1, Windows Embedded Standard 7 SP1, and Windows Server 2008 R2 SP1 require Microsoft updates to support SHA-256. Refer to Microsoft  <a target="_blank" href="https://technet.microsoft.com/en-us/library/security/3033929">KB3033929</a> for more information about how to install this security update.
+            </p>
+
+
+
+
+            <p>
+              <strong>Installation notes:</strong> </p>
+
+            <ul>
+              <li>
+                You must install the NI-FGEN 15.0 driver or later in order to use the .NET API for NI-FGEN.
+                
+              </li>
+
+
+
+
+
+
+        
+              <li>
+                The .NET API for NI-FGEN  does not support:
+                <ul>
+              
+
+
+                    <li>
+                      Windows Vista Starter Edition
+                    </li>
+                
+
+
+                  <li>
+                    Non-R2 editions of Windows Server
+                  </li>
+                </ul>
+
+              </li>
+            
+              <li>
+                This product supports, and was tested with, the latest Visual Studio service
+                pack and the latest operating system service pack that was available at the time this product was released. National Instruments
+                strongly recommends using NI-FGEN with the latest Visual Studio service pack and the latest operating system service pack.
+              </li>
+
+              <li>
+                If you want to upgrade your operating system from one major version to another, National Instruments
+                recommends first uninstalling all National Instruments software, including application software and drivers.
+                This is typically not necessary when installing an operating system service pack.
+              </li>
+   
+
+            </ul>
+               
+
+                <h1><a name="install">Installation Instructions</a></h1>
+              
+                <ol type="1">
+                  
+                    <li> Download the <span class="code">.zip</span> file that contains the NI-FGEN .NET class library. Refer to <a target="_blank" href="http://www.ni.com/drivers/">NI Drivers and Updates</a>
+                      on <a target="_blank" href="http://www.ni.com">ni.com</a> and enter <code>FGEN</code> into
+                      the search field to download the latest version of the  NI-FGEN device driver and NI-FGEN .NET class library.
+                    </li>
+                  <li>
+                    Unzip the contents of the <span class="code">.zip</span> file to a temporary location.
+                  </li>
+ 
+    <li>
+      Launch <span class="code">setup.exe</span>.
+    </li>
+
+
+                  <li>
+                    Follow the instructions that appear on the screen.
+                    
+                    
+                  </li>
+
+                     </ol>
+         
+
+             
+</p>
+    <p>
+            <h1><a name="deployment">Deployment</a></h1>
+
+
+            <p>
+             National Instruments recommends using the Measurement Studio Installer Builder application to deploy applications built with the NI-FGEN .NET class library.  
+            </p>
+         
+
+          </p>
+    <p>
+            <h1><a name="security"> Product Security and Critical Updates</a></h1>
+            <p>
+            Visit <a target="_blank" href="http://www.ni.com/security">ni.com/security</a>  to view and subscribe to receive security notifications about NI products. Visit <a target="_blank" href="http://ni.com/critical-updates">ni.com/critical-updates</a> for information about critical updates from NI.</p>
+        </p>
+    <p>
+		<h1><a name="knownissues">
+			Known Issues in the NI-FGEN .NET Class Library 19.1
+		</a></h1>
+
+		<p>
+                	The following are known issues in the NI-FGEN .NET Class Library 19.1:
+	        </p>
+
+		<ul>
+			
+			<li>
+        The NI-FGEN 15.0 driver is not compatible with any supported Windows operating systems that use multibyte character sets (for example, Japanese). To use the NI-FGEN .NET Class Library on an operating system that uses multibyte character sets, install NI-FGEN driver version 16.0 or later.
+      </li>
+		
+		</ul>	</p>
+    <p>
+            <h1><a name="accessinghelp">Accessing the Help</a></h1>
+            <p>
+              Select <strong>
+                Start&raquo;All Programs&raquo;National Instruments&raquo;NI-FGEN&raquo;NI-FGEN Documentation
+              </strong> to view the help.
+            </p>
+          </p>
+    <p>
+            <h1><a name="findingexamples">Finding Examples</a></h1>
+            <p>
+             Select <strong>
+                Start&raquo;All Programs&raquo;National Instruments&raquo;NI-FGEN&raquo;NI-FGEN Examples
+              </strong> to access example projects targeting the .NET Framework 4.0 and the .NET Framework 4.5.
+            </p>
+          </p>
+    <p>
+            <h1><a name="automatinginstallation">Automating the Installation of NI Products</a></h1>
+            <p>
+              You can automate the installation of most NI products using command-line arguments to suppress some or all of the installer user interface and dialog boxes.
+            </p>
+            <p>
+              If the NI product you are installing uses Microsoft .NET 4.0, the .NET installer may run before any NI software installs and may require a reboot before the installation of NI software begins. To avoid a .NET reboot, install .NET 4.0 separately before you install NI software.
+            </p>
+
+            <p>For more information about automating the installation of NI products, refer to the following KnowledgeBase articles:
+            </p>
+            <ul>
+              <li>
+              For more information about silent installations of individual NI products, refer to <a target="_blank" href="http://digital.ni.com/express.nsf/bycode/installerautomation">KnowledgeBase Article 4CJDP38M: Automating the Installation of a Single Installer</a>.</li>
+              <li>  For more information about silent installations of NI products in a suite, such as NI Developer Suite, refer to  <a target="_blank" href="http://digital.ni.com/express.nsf/bycode/SuiteInstallerAutomation">
+                KnowledgeBase Article 4GGGDQH0: How Do I Automate the Installation of a Suited Installer?</a>.</li>
+              <li>  To determine what version of NI Installers your product contains, refer to <a target="_blank" href="http://digital.ni.com/express.nsf/bycode/InstallerVersion">KnowledgeBase Article 4CJDR18M: How Can I Determine the Type and Version of My NI Installer?</a>.</li>
+
+
+</ul>
+        
+            
+          </p>
+    <p>
+      
+                          <h1><a name="NIwin10">Using NI Software with Microsoft Windows 10</a></h1>
+
+            <p>
+              Microsoft Windows 10 is the latest version of the Windows operating system and features significant changes compared to previous versions. Windows 10 introduces several new capabilities and also combines features from both Windows 7 and Windows 8. For more information about NI support for Windows 10, visit <a target="_blank" href="http://ni.com/windows10">ni.com/windows10</a>.
+            </p>
+
+
+
+            <h1><a name="NIwin8">Using NI Software with Microsoft Windows 8.1</a></h1>
+
+            <p>
+              When you install National Instruments software on Microsoft Windows 8.1, you will notice a few additional tiles in the Apps view, including shortcuts to NI application software products such as
+              NI LabVIEW, Measurement &amp; Automation Explorer (MAX), and the new NI Launcher.
+         
+              For more information about NI support for Windows 8.1, visit <a target="_blank" href="http://www.ni.com/windows8/">ni.com/windows8</a>.
+            </p>
+
+
+         
+
+
+          </p>
+    <p>
+          
+            <h1><a name="legal">Legal Information</a></h1>
+            <h4>Copyright</h4>
+            <p>
+              &copy; 2017 National Instruments. All rights reserved.
+            </p>
+            <p>
+              Under the copyright laws, this publication may not be reproduced or transmitted in any form, electronic or mechanical, including photocopying, recording, storing in an information retrieval system, or translating, in whole or in part,
+              without the prior written consent of National Instruments Corporation.
+            </p>
+            <p>
+              National Instruments respects the intellectual property of others, and we ask our users to do the same. NI software is protected by copyright and other intellectual property laws. Where NI software may be used to reproduce software or other
+              materials belonging to others, you may use NI software only to reproduce materials that you may reproduce in accordance with the terms of any applicable license or other legal restriction.
+            </p>
+
+            <h4>End-User License Agreements and Third-Party Legal Notices</h4>
+            <p>
+              You can find end-user license agreements (EULAs) and third-party legal notices in the following locations after installation:
+            </p>
+            <ul>
+              <li>
+                Notices are located in the <span class="code">
+                  &lt;National Instruments&gt;\_Legal Information
+                </span> and <span class="code">
+                  &lt;National Instruments&gt;
+                </span> directories.
+              </li>
+              <li>
+                EULAs are located in the <span class="code">
+                  &lt;National Instruments&gt;\Shared\MDF\Legal\license
+                </span>  directory.
+              </li>
+              <li>
+                Review <span class="code">
+                  &lt;National Instruments&gt;\_Legal Information.txt
+                </span> for information on including legal information in installers built with NI products.
+              </li>
+            </ul>
+
+            <h4>U.S. Government Restricted Rights</h4>
+            <p>
+              If you are an agency, department, or other entity of the United States Government ("Government"), the use, duplication, reproduction, release, modification, disclosure or transfer of the technical data included in this manual is governed by the Restricted
+              Rights provisions under Federal Acquisition Regulation 52.227-14 for civilian agencies and Defense Federal Acquisition Regulation Supplement Section 252.227-7014 and 252.227-7015 for military agencies.
+            </p>
+
+            <h4>IVI Foundation Copyright Notice</h4>
+            <p>
+              Content from the IVI specifications reproduced with permission from the IVI Foundation.
+            </p>
+            <p>
+              The IVI Foundation and its member companies make no warranty of any kind with regard to this material, including, but not limited to, the implied warranties of merchantability and fitness for a particular
+              purpose. The IVI Foundation and its member companies shall not be liable for errors contained herein or for incidental or consequential damages in connection with the furnishing, performance, or use of this material.
+            </p>
+
+
+            <h4>Trademarks</h4>
+            <p>
+              Refer to the <i>NI Trademarks and Logo Guidelines</i>
+              at  <a target="_blank" href="http://www.ni.com/legal/trademarks/">ni.com/trademarks</a> for information on National Instruments trademarks. Other product and company names mentioned herein are trademarks or trade names of their respective companies.
+            </p>
+            <h4>Patents</h4>
+            <p>
+              For patents covering the National Instruments products/technology, refer to the appropriate location: <strong>
+                Help&raquo;Patents
+              </strong> in your software, the <code>patents.txt</code> file on your media,
+              or the <a target="_blank" href="http://www.ni.com/patents">National Instruments Patent Notice</a> at <code>ni.com/patents</code>.
+            </p>
+
+          </p>
+    <p>
+            <p>
+              376941A-01
+            </p>
+          </p>
+    <div><br><hr>
+      <p>To comment on National Instruments documentation, refer to the
+    <a href="http://www.ni.com/cgi-bin/redirect.cgi?dest=infcoprod&amp;src=help&amp;openagent&amp;code=feedback" target="blank">National Instruments Web site</a>.</p>
+    </div>
+  </body>
+</html>

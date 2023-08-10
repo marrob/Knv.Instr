@@ -1,1 +1,0 @@
-C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.NIDmm 22.5.0\NationalInstruments.ModularInstruments.NIDmm.Fx45.dll

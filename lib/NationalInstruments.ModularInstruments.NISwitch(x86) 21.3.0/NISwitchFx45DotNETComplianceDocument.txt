@@ -1,0 +1,131 @@
+IVI Compliance Category:
+-----------------------
+
+IVI.NET IviSwtch Specific Instrument Driver
+Class Specification version:           4.0
+IVI Generation:                        IVI-2014
+Group Capabilities Supported:
+
+Base            = Supported
+Scanner         = Supported
+SoftwareTrigger = Supported
+
+
+
+Optional Features:
+-----------------
+
+Interchangeability Checking           = True
+State Caching                         = True
+Coercion Recording                    = True
+
+
+
+Driver Identification:
+---------------------
+
+Driver Revision:                       21.3
+Driver Vendor:                         National Instruments
+Component Identifier:                  niSwitch
+Description:                           Instrument Driver for National Instruments Switch products
+
+
+
+Hardware Information:
+--------------------
+
+Instrument Manufacturer:               National Instruments
+Supported Instrument Models:           NI SCXI-1127, NI SCXI-1128, NI SCXI-1129, NI SCXI-1130,
+                                       NI SCXI-1160, NI SCXI-1161, NI SCXI-1163R, NI SCXI-1166,
+                                       NI SCXI-1167, NI SCXI-1169, NI SCXI-1175, NI SCXI-1190,
+                                       NI SCXI-1191, NI SCXI-1192, NI SCXI-1193, NI SCXI-1194,
+                                       NI SCXI-1195, NI PXI-2501, NI PXI-2503, NI PXI-2510,
+                                       NI PXI-2512, NI PXI-2514, NI PXI-2515, NI PXI-2520,
+                                       NI PXI-2521, NI PXI-2522, NI PXI-2523, NI PXI-2527,
+                                       NI PXI-2529, NI PXI-2530, NI PXI-2530B, NI PXI-2531,
+                                       NI PXI-2532, NI PXI-2532B, NI PXI-2533, NI PXI-2534,
+                                       NI PXI-2535, NI PXI-2536, NI PXI-2540, NI PXI-2541,
+                                       NI PXI-2542, NI PXI-2543, NI PXI-2544, NI PXI-2545,
+                                       NI PXI-2546, NI PXI-2547, NI PXI-2548, NI PXI-2549,
+                                       NI PXI-2554, NI PXI-2555, NI PXI-2556, NI PXI-2557,
+                                       NI PXI-2558, NI PXI-2559, NI PXI-2564, NI PXI-2565,
+                                       NI PXI-2566, NI PXI-2567, NI PXI-2568, NI PXI-2569,
+                                       NI PXI-2570, NI PXI-2571, NI PXI-2575, NI PXI-2576,
+                                       NI PXI-2584, NI PXI-2585, NI PXI-2586, NI PXI-2590,
+                                       NI PXI-2591, NI PXI-2593, NI PXI-2594, NI PXI-2595,
+                                       NI PXI-2596, NI PXI-2597, NI PXI-2598, NI PXI-2599,
+                                       NI PXI-2720, NI PXI-2722, NI PXI-2796, NI PXI-2797,
+                                       NI PXI-2798, NI PXI-2799, NI PXIe-2512, NI PXIe-2514,
+                                       NI PXIe-2515, NI PXIe-2524, NI PXIe-2525, NI PXIe-2526,
+                                       NI PXIe-2527, NI PXIe-2529, NI PXIe-2531, NI PXIe-2532,
+                                       NI PXIe-2532B, NI PXIe-2540, NI PXIe-2541, NI PXIe-2542,
+                                       NI PXIe-2543, NI PXIe-2544, NI PXIe-2569, NI PXIe-2575,
+                                       NI PXIe-2593, NI PXIe-2725, NI PXIe-2727, NI PXIe-2737,
+                                       NI PXIe-2738, NI PXIe-2739, NI PXIe-2746, NI PXIe-2747,
+                                       NI PXIe-2748, NI PXIe-2790, NI SWB-2810, NI SWB-2811,
+                                       NI SWB-2812, NI SWB-2813, NI SWB-2814, NI SWB-2815,
+                                       NI SWB-2816, NI SWB-2817, NI SWB-2833, NI SWB-2834,
+                                       NI SWB-2865
+Supported Bus Interfaces:              PXI, PXIe, SCXI, SWB
+
+
+
+32-bit Software Information:
+---------------------------
+
+Supported Operating Systems:           Windows 7 (32-bit), Windows 8 (32-bit), Windows 10 (32-bit),
+                                       Windows 7 (64-bit), Windows 8 (64-bit), Windows 10 (64-bit),
+                                       Windows Server 2003 R2 (32-bit),
+                                       Windows Server 2008 R2 (64-bit)
+Support Software Required:             None
+.NET Minimum Runtime Version:          4.5
+.NET Target Framework Version:         4.5
+Source Code Availability:              Source code is not available
+
+
+
+64-bit Software Information:
+---------------------------
+
+Supported Operating Systems:           Windows 7 (64-bit), Windows 8 (64-bit), Windows 10 (64-bit),
+                                       Windows Server 2008 R2 (64-bit)
+Support Software Required:             None
+.NET Minimum Runtime Version:          4.5
+.NET Target Framework Version:         4.5
+Source Code Availability:              Source code is not available
+
+
+
+Unit Testing:
+------------
+
+Test Setup 1:
+
+Instrument Model (Firmware Revision):  NI PXI-2530 (N/A), NI PXIe-2737 (N/A)
+Bus Interface:                         PXI, PXIe
+Operating System (Service Pack):       Windows 10
+OS Bitness/Application Bitness:        64-bit/64-bit
+IVI Shared Components Version:         2.4.2
+
+
+
+Driver Installation Testing:
+---------------------------
+
+Operating System (Service Pack):       Windows 7, Windows 8, Windows 10, Windows Server 2003 R2,
+                                       Windows Server 2008 R2
+OS Bitness:                            32-bit, 64-bit
+
+
+
+Driver Test Failures:
+--------------------
+
+Known Issues:                          Refer to the NI-SWITCH Readme File for more information
+                                       about known issues
+
+Note: National Instruments has evaluated and/or tested this driver to verify that it meets all
+applicable requirements of the IVI specifications at the time this compliance document was submitted
+to the IVI Foundation and agrees to abide by the dispute arbitration provisions in
+Section 8 of IVI-1.2: Operating Procedures, if the IVI Foundation finds this driver to be
+non-conformant.

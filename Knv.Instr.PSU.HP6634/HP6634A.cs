@@ -61,6 +61,11 @@ namespace Knv.Instr.PSU.HP6634A
             Write($"VSET {volt};ISET {current}");
         }
 
+        public void OnOff(bool onOff)
+        {
+            Write($"OUT {(onOff ? "1" : "0")}");
+        }
+
         public void SetOutput(double volt, double current, bool onOff)
         {
             Write($"VSET {volt};ISET {current};OUT {(onOff ? "1" : "0")}");
@@ -69,19 +74,19 @@ namespace Knv.Instr.PSU.HP6634A
         public double SetOutputGetActualVolt(double volt, double current)
         {
             var resp = Query($"VSET {volt};ISET {current};VOUT?");
-            return double.Parse(resp);
+            return double.Parse(resp, System.Globalization.CultureInfo.GetCultureInfo("en-US"));
         }
 
         public double GetActualVolt()
         {
             var resp = Query($"VOUT?");
-            return double.Parse(resp);
+            return double.Parse(resp, System.Globalization.CultureInfo.GetCultureInfo("en-US"));
         }
 
         public double GetActualCurrent()
         {
             var resp = Query($"IOUT?");
-            return double.Parse(resp);
+            return double.Parse(resp, System.Globalization.CultureInfo.GetCultureInfo("en-US"));
         }
 
         public string GetErrors()
