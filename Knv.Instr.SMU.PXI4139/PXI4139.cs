@@ -13,13 +13,13 @@
  * ..\lib\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.Common.dll
  * 
  * NationalInstruments.ModularInstruments.Common.dll
- * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.Common 22.5.0\NationalInstruments.ModularInstruments.Common.dll
- * ..\lib\NationalInstruments.ModularInstruments.Common(x86) 22.5.0\NationalInstruments.ModularInstruments.Common.dll
+ * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.Common 20.0.0\NationalInstruments.ModularInstruments.Common.dll
+ * ..\lib\NationalInstruments.ModularInstruments.Common(x86) 20.0.0\NationalInstruments.ModularInstruments.Common.dll
  * 
 
  * NationalInstruments.ModularInstruments.NIDCPower.Fx45.dll
- * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.NIDCPower 19.0.0\NationalInstruments.ModularInstruments.NIDCPower.Fx45.dll
- * ..\lib\NationalInstruments.ModularInstruments.NIDCPower(x86) 19.0.0\NationalInstruments.ModularInstruments.NIDCPower.Fx45.dll
+ * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.NIDCPower 21.3.1\NationalInstruments.ModularInstruments.NIDCPower.Fx45.dll
+ * ..\lib\NationalInstruments.ModularInstruments.NIDCPower(x86) 21.3.1\NationalInstruments.ModularInstruments.NIDCPower.Fx45.dll
  * 
  * 
  * - Konfigurálás előtt a sessiont Abortálni kell, különben nem lehet konfigurálni.

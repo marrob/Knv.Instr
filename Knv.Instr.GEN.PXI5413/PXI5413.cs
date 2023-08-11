@@ -4,21 +4,21 @@
  * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v2.0.50727\IviFoundationSharedComponents 2.0.0\Ivi.Driver.dll
  * ..\lib\IviFoundationSharedComponents 2.0.0\Ivi.Driver.dll
  *  
- * Ivi.DCPwr
+ * Ivi.Fgen
  * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v2.0.50727\IviFoundationSharedComponents 2.0.0\Ivi.Fgen.dll
  * ..\lib\IviFoundationSharedComponents 2.0.0\Ivi.Fgen.dll
  *  
  * NationalInstruments.Common.dll
- * C:\Program Files (x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common 19.1.40\NationalInstruments.Common.dll
- * ..\lib\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.Common.dll
+ * C:\Program Files (x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common x.x.x\NationalInstruments.Common.dll
+ * ..\lib\NationalInstruments.Common(x86) x.x.x\NationalInstruments.Common.dll
  * 
  * NationalInstruments.ModularInstruments.Common.dll
- * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.Common 22.5.0\NationalInstruments.ModularInstruments.Common.dll
- * ..\lib\NationalInstruments.ModularInstruments.Common(x86) 22.5.0\NationalInstruments.ModularInstruments.Common.dll
+ * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.Common x.x.x\NationalInstruments.ModularInstruments.Common.dll
+ * ..\lib\NationalInstruments.ModularInstruments.Common(x86) x.x.x\NationalInstruments.ModularInstruments.Common.dll
  * 
  * NationalInstruments.ModularInstruments.NIFgen.Fx45.dll
- * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.NIFgen 21.8.0\NationalInstruments.ModularInstruments.NIFgen.Fx45.dll
- * ..\lib\NationalInstruments.ModularInstruments.NIFgen 21.8.0\NationalInstruments.ModularInstruments.NIFgen.Fx45.dll
+ * C:\Program Files (x86)\IVI Foundation\IVI\Microsoft.NET\Framework32\v4.5.50709\NationalInstruments.ModularInstruments.NIFgen 21.3.0\NationalInstruments.ModularInstruments.NIFgen.Fx45.dll
+ * ..\lib\NationalInstruments.ModularInstruments.NIFgen 21.3.0\NationalInstruments.ModularInstruments.NIFgen.Fx45.dll
  * 
  * 
  */
