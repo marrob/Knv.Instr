@@ -1,10 +1,66 @@
-﻿
+﻿/*
+***Sample IO by NI RMX-400x Loads COnsatnt Current Mode Setup.vi ***
+
+ *IDN\n
+-> National Instruments RMX-4005,GEW161695, V2.16
+
+*RST\n
+*ESE 60;*SRE;*CLS
+
+:SYST:ERR?\n
+-> 0, "No error"
+
+:CHAN 1;
+:SYST:ERR?\n
+-> 0, "No error"
+
+:MODE CCL\n
+:SYST:ERR?\n
+-> 0, "No error"
+
+
+:CHAN:ID?;\n
+-> National Instruments RMX-4005,GEW161695, V2.16
+
+:CURR:STAT:LOW:AVAL 0.10000;
+:CURR:STAT:REC A;
+:CURR:STAT:LOW:RISE 0.080000;
+:CURR:STAT:LOW:FALL 0.080000;\n
+:SYST:ERR?\n
+-> National Instruments RMX-4005,GEW161695, V2.16
+
+:CONF:VOLT:RANG L;\n
+:SYST:ERR?\n
+
+:LOAD:TYPE LOAD;:LOAD:DEL 0.00000;:LOAD ON;
+:SYST:ERR?\n
+
+:FETC:CURR?\n
+
+:FETC:POW?\n
+-> 0.49667
+
+:SYST:ERR?\n
+-> 0, "No error"
+
+:FETC:VOLT?;\n
+-> 4.99297\n
+
+:SYST:ERR?\n
+-> 0, "No error"
+
+
+*** END ***
+*/
+
 namespace Knv.Instr.LOAD.RMX4005
 {
     using System;
     using NationalInstruments.Visa;
     using Ivi.Visa;
     using System.Collections.Generic;
+    using static NUnit.Framework.Constraints.Tolerance;
+    using System.Reflection;
 
     public class RMX4005 : IElectronicsLoad
     {
@@ -24,6 +80,12 @@ namespace Knv.Instr.LOAD.RMX4005
                 _session = new ResourceManager().Open(resourceName);
                 ((MessageBasedSession)_session).TerminationCharacter = (byte)'\n';
                 ((MessageBasedSession)_session).TerminationCharacterEnabled = true;
+
+                Write($"*RST");
+
+                var errors = GetErrors();
+                if(errors.Count > 0)
+                    throw new Exception($"Error: RMX4005: { string.Join(",", errors)}");
             }
         }
 
@@ -34,8 +96,8 @@ namespace Knv.Instr.LOAD.RMX4005
          *  - Low(CCL): 7A 
          *  - High(CCH):70A, 
          *  - Voltage: 0..80V
-         *  - Az egycsatornás moduljaink csak A Value és B Value-t is be lehet állítani támogatják
-         *  
+         *  - Az egycsatornás moduljaink "A" Value és "B" Value-t is be lehet állítani 
+         *   
          *  
          *  CCL - Constant Current Low Range
          *  CCH - Constant Current High Range
@@ -75,21 +137,36 @@ namespace Knv.Instr.LOAD.RMX4005
             {
                 case "CCL":
                     {
+                        //CC static mode, low range
+                        Write($":MODE CCL");
                         //:CURR:STAT:LOW:AVAL 1  -> Sets low range CC static mode A Value to 1 A.
-                        Write($":CURR:STAT:LOW:AVAL {current};");
-                        //:CURR:STAT:REC 1 -> Sets or queries whether A Value or B Value is the currently active value in CC static mode.
-                        Write($":CURR:STAT:REC A;");
+                        Write($":CURR:STAT:LOW:AVAL {current}");
+                        //Sets whether A Value or B Value is the currently active value in CC static mode.
+                        Write($":CURR:STAT:REC A");
+                        //Sets the low range rising/falling slew rates.
+                        //Sets the rising slew rate to 0.001 A / μs.
+                        Write($":CURR:STAT:LOW:RISE 0.08");
+                        Write($":CURR:STAT:LOW:RISE 0.08");
+                        //Supported only low.
+                        Write($":CONF:VOLT:RANG L");    
                         break;
                     }
 
                 case "CCH":
                     {
+                        Write($":MODE CCH");
                         Write($":CURR:STAT:HIGH:AVAL {current}");
-                        Write($":CURR:STAT:REC A;");
+                        Write($":CURR:STAT:REC A");
+                        Write($":CURR:STAT:LOW:RISE 0.08");
+                        Write($":CURR:STAT:LOW:FALL 0.08");
                         break;
                     }
                 default: throw new ArithmeticException($" This {mode} not supported. Supported reages: CCL, CCH ");
             }
+
+            var errors = GetErrors();
+            if (errors.Count > 0)
+                throw new Exception($"Error: RMX4005: {string.Join(",", errors)}");
         }
 
 
@@ -119,11 +196,16 @@ namespace Knv.Instr.LOAD.RMX4005
 
         public void OnOff(bool enable)
         {
+            if (_simulation)
+                return;
+
             //:LOAD\sON;\n -> Current Channel
             //:GLOB:LOAD\sON;\n -> All Channel
 
-            if (_simulation)
-                return;
+            //Load: Load, Program, Sequence
+            Write(":LOAD:TYPE LOAD;");
+            //Delay - Sets or queries the load delay time for the specific channel.
+            Write(":LOAD:DEL 0.00000;");
             if (enable)
                 Write(":LOAD ON;");
             else

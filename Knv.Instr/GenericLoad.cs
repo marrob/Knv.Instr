@@ -14,9 +14,18 @@
             return _load.Identify();
         }
 
-        public void Config(string mode = "CCL", string channel = "1", double current = 2.0)
+        public void Config(string mode = "CCL", string channel = "1", double current = 0.10)
         {
             _load.Config(mode, channel, current);
+        }
+        public double GetActualVolt()
+        { 
+           return _load.GetActualVolt();
+        }
+
+        public double GetActualCurrent()
+        { 
+            return _load.GetActualCurrent();
         }
 
         public void OnOff(bool enable)

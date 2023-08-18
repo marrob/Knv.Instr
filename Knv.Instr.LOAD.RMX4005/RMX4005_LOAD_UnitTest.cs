@@ -22,6 +22,19 @@ namespace Knv.Instr.LOAD.RMX4005
         }
 
         [Test]
+        public void ConfigLoad_LowRange_ConstantCurrentX()
+        {
+            using (var load = new RMX4005(RESOURCE_NAME, simulation: false))
+            {
+                var resp = load.Identify().ToUpper();
+                Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
+
+                load.Config(mode: "CCL", channel: "1", current: 0.03);
+                load.OnOff(enable: true);
+            }
+        }
+
+        [Test]
         public void ConfigLoad_LowRange_ConstantCurrent()
         {
             using (var load = new RMX4005(RESOURCE_NAME, simulation: false))
