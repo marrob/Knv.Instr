@@ -38,6 +38,7 @@ namespace Knv.Instr.SMU.PXI4139
     using System.Collections.Generic;
     using System.Linq;
     using NationalInstruments;
+    using System.Configuration;
 
     public class PXI4139 : ISourceMeasureUnits
     {
@@ -47,7 +48,7 @@ namespace Knv.Instr.SMU.PXI4139
         public Dictionary<string, string[]> Ranges = new Dictionary<string, string[]>()
         {
             { VoltageLevelRange, new string[]{ "60V", "6V", "600mV" } },
-            { CurrentLimitRange, new string[]{ "3A", "1A", "100mV", "10mA", "1mA", "100uA", "10uA", "1uA" } },
+            { CurrentLimitRange, new string[]{ "3A", "1A", "100mA", "10mA", "1mA", "100uA", "10uA", "1uA" } },
         };
 
         const string SelectedChannelName = "0";
@@ -207,6 +208,7 @@ namespace Knv.Instr.SMU.PXI4139
 
         internal double VoltageRangeNameToValue(string rangeName)
         {
+            rangeName = rangeName.Trim();
             /*** Voltage ***/
             string[] voltageItems;
             if (!Ranges.TryGetValue(VoltageLevelRange, out voltageItems))
@@ -227,6 +229,7 @@ namespace Knv.Instr.SMU.PXI4139
 
         internal double CurrentRangeNameToValue(string rangeName)
         {
+            rangeName = rangeName.Trim();
             /*** Current ***/
             string[] currentItems;
             if (!Ranges.TryGetValue(CurrentLimitRange, out currentItems))
