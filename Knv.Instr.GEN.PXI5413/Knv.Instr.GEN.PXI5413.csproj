@@ -43,6 +43,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\IviFoundationSharedComponents 2.0.0\Ivi.Fgen.dll</HintPath>
     </Reference>
+    <Reference Include="NationalInstruments.Common, Version=19.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="NationalInstruments.ModularInstruments.Common, Version=21.8.45.49226, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NationalInstruments.ModularInstruments.Common(x86) 20.0.0\NationalInstruments.ModularInstruments.Common.dll</HintPath>
+    </Reference>
     <Reference Include="NationalInstruments.ModularInstruments.NIFgen.Fx45, Version=21.3.0.49297, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NationalInstruments.ModularInstruments.NIFgen(x86) 21.3.0\NationalInstruments.ModularInstruments.NIFgen.Fx45.dll</HintPath>
@@ -55,7 +63,9 @@
   <ItemGroup>
     <Compile Include="PXI5413.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PXI5413_GEN_UnitTest.cs" />
+    <Compile Include="ArbitrarySample_UnitTest.cs" />
+    <Compile Include="PXI5413_UnitTest.cs" />
+    <Compile Include="Signals.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

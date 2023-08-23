@@ -13,26 +13,16 @@
         {
             return _gen.Identify();
         }
-        public void SetWaveform(string channel = "0", string waveformName = "Square")
-        {
-            _gen.SetWaveform(channel, waveformName);
-        }
-        public void SetAmplitude(string channel = "0", double amplitudeVpp = 1)
-        {
-            _gen.SetAmplitude(channel, amplitudeVpp);
-        }
-        public void SetFrequency(string channel = "0", double frequencyHz = 1000)
-        {
-            _gen.SetFrequency(channel, frequencyHz);
-        }
-        public void SetOffset(string channel = "0", double offsetVp = 0.5)
-        {
-            _gen.SetOffset(channel, offsetVp);
-        }
-        public void SetDutyCycle(string channel, double dutyCycle)
+
+        public void ConfigWaveform( string waveformName = "Square", double amplitudeVpp = 1, double frequencyHz = 1000, double offsetVp = 0.5, double dutyCycle = 50)
         { 
-            _gen.SetDutyCycle(channel, dutyCycle);
+            _gen.ConfigWaveform(waveformName, amplitudeVpp, frequencyHz, offsetVp, dutyCycle);
         }
+        public void ConfigPwm(double vpp = 1, double offset = 0, double frequencyHz = 1000, double dutyCycle = 50)
+        { 
+            _gen.ConfigPwm(vpp, offset, frequencyHz, dutyCycle);
+        }
+
         public void Start()
         { 
             _gen.Start();
