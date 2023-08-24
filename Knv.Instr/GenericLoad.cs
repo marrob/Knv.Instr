@@ -9,12 +9,14 @@
             _load = loadInstance;
         }
 
+
+
         public string Identify()
         {
             return _load.Identify();
         }
 
-        public void Config(string mode = "CCL", string channel = "1", double current = 0.10)
+        public void Config(string mode = "CCL-VL", string channel = "1", double current = 0.10)
         {
             _load.Config(mode, channel, current);
         }

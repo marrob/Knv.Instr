@@ -60,13 +60,19 @@ namespace Knv.Instr.LOAD.RMX4005
     using Ivi.Visa;
     using System.Collections.Generic;
     using static NUnit.Framework.Constraints.Tolerance;
-    using System.Reflection;
 
     public class RMX4005 : IElectronicsLoad
     {
         bool _disposed = false;
         readonly bool _simulation = false;
         readonly IVisaSession _session = null;
+        public Dictionary<string, string> Modes = new Dictionary<string, string>()
+        {
+            { "Constant Current 7A 16V", "CCL-VL" },
+            { "Constant Current 7A 80V", "CCL-VH" },
+            { "Constant Current 70A 16V", "CCH-VL" },
+            { "Constant Current 70A 80V", "CCH-VH" },
+        };
 
         public RMX4005(string resourceName, bool simulation)
         {
@@ -95,30 +101,28 @@ namespace Knv.Instr.LOAD.RMX4005
          *  - 1db Mainframe van az ECUTSB-en ehhez csatlakozik a 2db egycsatornás load modul
          *  - Low(CCL): 7A 
          *  - High(CCH):70A, 
-         *  - Voltage: 0..80V
+         *  - Voltage: 0..80V -> mind később kiderült ez így egy KISBASZOT FASZSÁG
+         *    CCL és CCH módban is két külön feszültség tartomány van
+         *    :CONF:VOLT:RANG L 16V-ig
+         *    :CONF:VOLT:RANG H 80V-ig
+         *    
          *  - Az egycsatornás moduljaink "A" Value és "B" Value-t is be lehet állítani 
          *   
          *  
          *  CCL - Constant Current Low Range
          *  CCH - Constant Current High Range
          */
-
-        /// <summary>
-        /// mode: 
-        ///     CCL - Constant Current Low Range
-        ///     CCH - Constant Current High Range
-        /// </summary>
-        /// <param name="mode"></param>
-        /// <param name="channel"></param>
-        /// <param name="range"></param>
-        /// <param name="current"></param>
-        /// <exception cref="ArithmeticException"></exception>
-
-        public void Config(string mode = "CCL", string channel = "1", double current = 2.0)
+        public void Config(string mode = "CCL-VL", string channel = "1", double current = 2.0)
         {
 
             if (_simulation)
                 return;
+
+            mode = mode.Trim().ToUpper();
+
+            if(!Modes.ContainsValue(mode))
+                throw new ArgumentException($"Not supported mode:{mode}.Supported Modes:CCL-VL, CCL-VH, CCH-VL, CCH-VH");
+
             /*
              * Selects the channel that the channel-specific
              * commands use. This command does not change
@@ -135,7 +139,7 @@ namespace Knv.Instr.LOAD.RMX4005
 
             switch (mode.Trim().ToUpper())
             {
-                case "CCL":
+                case "CCL-VL":
                     {
                         //CC static mode, low range
                         Write($":MODE CCL");
@@ -146,19 +150,42 @@ namespace Knv.Instr.LOAD.RMX4005
                         //Sets the low range rising/falling slew rates.
                         //Sets the rising slew rate to 0.001 A / μs.
                         Write($":CURR:STAT:LOW:RISE 0.08");
-                        Write($":CURR:STAT:LOW:RISE 0.08");
-                        //Supported only low.
-                        Write($":CONF:VOLT:RANG L");    
+                        Write($":CURR:STAT:LOW:FALL 0.08");
+                        //Low range: 16V
+                        //High range: 80V
+                        Write($":CONF:VOLT:RANG L");
                         break;
                     }
 
-                case "CCH":
+                case "CCL-VH":
+                    {
+                        Write($":MODE CCL");
+                        Write($":CURR:STAT:LOW:AVAL {current}");
+                        Write($":CURR:STAT:REC A");
+                        Write($":CURR:STAT:LOW:RISE 0.08");
+                        Write($":CURR:STAT:LOW:FALL 0.08");
+                        Write($":CONF:VOLT:RANG H");
+                        break;
+                    }
+
+                case "CCH-VL":
                     {
                         Write($":MODE CCH");
                         Write($":CURR:STAT:HIGH:AVAL {current}");
                         Write($":CURR:STAT:REC A");
                         Write($":CURR:STAT:LOW:RISE 0.08");
                         Write($":CURR:STAT:LOW:FALL 0.08");
+                        Write($":CONF:VOLT:RANG L");
+                        break;
+                    }
+                case "CCH-VH":
+                    {
+                        Write($":MODE CCH");
+                        Write($":CURR:STAT:HIGH:AVAL {current}");
+                        Write($":CURR:STAT:REC A");
+                        Write($":CURR:STAT:LOW:RISE 0.08");
+                        Write($":CURR:STAT:LOW:FALL 0.08");
+                        Write($":CONF:VOLT:RANG H");
                         break;
                     }
                 default: throw new ArithmeticException($" This {mode} not supported. Supported reages: CCL, CCH ");
@@ -169,6 +196,42 @@ namespace Knv.Instr.LOAD.RMX4005
                 throw new Exception($"Error: RMX4005: {string.Join(",", errors)}");
         }
 
+        /// <summary>
+        /// Over voltage protection limits the amount of voltage sunk. 
+        /// If the OVP trips, the RMX-400x series load stops sinking voltage
+        /// OPP
+        /// Default: 16.5V
+        /// </summary>
+        public void OverVoltageProtection(string channel = "1", double voltage = 30)
+        {
+            if (_simulation)
+                return;
+
+            Write($":CHAN {channel};");
+            Write($":CONF:PROT:VOLT:STAT ON;");
+            //:CONFigure:PROTection:VOLTage:LEVel?\n
+            Write($":CONF:PROT:VOLT:LEV {voltage};");
+            var errors = GetErrors();
+            if (errors.Count > 0)
+                throw new Exception($"Error: RMX4005: {string.Join(",", errors)}");
+        }
+
+        /// <summary>
+        /// Under voltage protection turns off the load when the voltage drops below a set limit.
+        /// OVP
+        /// </summary>
+        public void UnderVoltageProtection(string channel = "1", double voltage = 30)
+        {
+            if (_simulation)
+                return;
+
+            Write($":CHAN {channel};");
+            Write($":CONF:PROT:UVP:LEV {voltage};");
+            var errors = GetErrors();
+            if (errors.Count > 0)
+                throw new Exception($"Error: RMX4005: {string.Join(",", errors)}");
+
+        }
 
         public double GetActualVolt()
         {

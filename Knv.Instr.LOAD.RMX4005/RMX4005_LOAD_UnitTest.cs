@@ -21,6 +21,26 @@ namespace Knv.Instr.LOAD.RMX4005
             }
         }
 
+
+        [Test]
+        public void ConfigLoad()
+        {
+            using (var load = new RMX4005(RESOURCE_NAME, simulation: false))
+            {
+                var resp = load.Identify().ToUpper();
+                Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
+
+
+                load.OverVoltageProtection(channel: "1", voltage: 30.0);
+                load.UnderVoltageProtection(channel: "1", voltage: 30.0);
+                load.Config(mode: "CCH-VL", channel: "1", current: 1.0);
+                load.OnOff(enable: true);
+
+                var errors = load.GetErrors();
+                Assert.AreEqual(0, errors.Count);
+            }
+        }
+
         [Test]
         public void ConfigLoad_LowRange_ConstantCurrentX()
         {
@@ -29,7 +49,7 @@ namespace Knv.Instr.LOAD.RMX4005
                 var resp = load.Identify().ToUpper();
                 Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
 
-                load.Config(mode: "CCL", channel: "1", current: 0.03);
+                load.Config(mode: "CCL-VL", channel: "1", current: 0.03);
                 load.OnOff(enable: true);
             }
         }
@@ -42,7 +62,7 @@ namespace Knv.Instr.LOAD.RMX4005
                 var resp = load.Identify().ToUpper();
                 Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
 
-                load.Config(mode: "CCL", channel: "1", current: 1.0);
+                load.Config(mode: "CCL-VL", channel: "1", current: 1.0);
                 load.OnOff(enable: true);
 
                 double current = load.GetActualCurrent();
@@ -68,7 +88,7 @@ namespace Knv.Instr.LOAD.RMX4005
                 var resp = load.Identify().ToUpper();
                 Assert.IsTrue(resp.Contains("NATIONAL INSTRUMENTS"));
 
-                load.Config(mode: "CCH", channel: "1", current: 69.0);
+                load.Config(mode: "CCH-VL", channel: "1", current: 69.0);
                 load.OnOff(enable: true);
 
                 double current = load.GetActualCurrent();
