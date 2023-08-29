@@ -115,14 +115,20 @@ namespace Knv.Instr.LOAD.RMX4005
         public void Config(string mode = "CCL-VL", string channel = "1", double current = 2.0)
         {
 
+
             if (_simulation)
                 return;
+
+            if (channel == "0")
+                throw new ArgumentException($"Error: Channel indexing start with 1!");
 
             mode = mode.Trim().ToUpper();
 
             if(!Modes.ContainsValue(mode))
-                throw new ArgumentException($"Not supported mode:{mode}.Supported Modes:CCL-VL, CCL-VH, CCH-VL, CCH-VH");
-
+                throw new ArgumentException($"Error: Not supported mode:{mode}.Supported Modes:CCL-VL, CCL-VH, CCH-VL, CCH-VH");
+           
+           // Write($"*RST");
+            
             /*
              * Selects the channel that the channel-specific
              * commands use. This command does not change
@@ -188,7 +194,7 @@ namespace Knv.Instr.LOAD.RMX4005
                         Write($":CONF:VOLT:RANG H");
                         break;
                     }
-                default: throw new ArithmeticException($" This {mode} not supported. Supported reages: CCL, CCH ");
+                default: throw new ArithmeticException($"Error: This {mode} not supported. Supported reages: CCL, CCH ");
             }
 
             var errors = GetErrors();
