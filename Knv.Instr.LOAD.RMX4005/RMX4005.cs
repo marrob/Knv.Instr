@@ -85,6 +85,7 @@ namespace Knv.Instr.LOAD.RMX4005
             {
                 _session = new ResourceManager().Open(resourceName);
                 ((MessageBasedSession)_session).TerminationCharacter = (byte)'\n';
+                ((MessageBasedSession)_session).TimeoutMilliseconds = 3000;
                 ((MessageBasedSession)_session).TerminationCharacterEnabled = true;
 
                 Write($"*RST");
