@@ -1,4 +1,6 @@
-﻿namespace Knv.Instr
+﻿using System;
+
+namespace Knv.Instr
 {
     public class GenericSMU : ISourceMeasureUnits
     {
@@ -7,6 +9,11 @@
         public GenericSMU(ISourceMeasureUnits smuInstance)
         {
             _smu = smuInstance;
+        }
+
+        public void Reset()
+        { 
+            _smu.Reset();   
         }
 
         public void ConfigCurrentSource(string voltageLimitRangeName = "6V", string currentRangeName = "1mA")

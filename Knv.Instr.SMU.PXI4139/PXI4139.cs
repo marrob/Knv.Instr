@@ -24,6 +24,8 @@
  * 
  * - Konfigurálás előtt a sessiont Abortálni kell, különben nem lehet konfigurálni.
  * - Az NI motor a konfigurációt a Commit vagy a Initiate metódussal után ellenörzi.
+ * - 0-áramot nem adhatsz meg beállításánál pl 0A-es kiapcsolt áramra hibát dob.
+ * - Ha az  OLPError - (-1074118481) bekövetkezilk akkor az minden fv hívásnál excetpion dob... Resetnél is... ezért nem igazán leht ebből a hibából kihozni, de lehet később javítják ezt 
  * 
  * 
  */
@@ -62,11 +64,17 @@ namespace Knv.Instr.SMU.PXI4139
             if (_simulation)
                 return;
            _session = new NIDCPower(resourceName, idQuery: true, resetDevice: true);
+
         }
 
         public string Identify()
         {
             return $"{_session.Identity.InstrumentManufacturer}, {_session.Identity.InstrumentModel}, {_session.Identity.Revision }";
+        }
+
+        public void Reset()
+        {
+            _session.Utility.Reset();
         }
 
 
@@ -133,7 +141,11 @@ namespace Knv.Instr.SMU.PXI4139
             _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimitAutorange = DCPowerSourceCurrentLimitAutorange.Off;
             _session.Outputs[SelectedChannelName].Source.Voltage.CurrentLimitRange = CurrentRangeNameToValue(currentLimitRangeName);
 
-            _session.Outputs[SelectedChannelName].Source.TransientResponse = DCPowerSourceTransientResponse.Normal;
+            /*
+             * Normal-ban az ECUTS2-ön, ha mindhárom mátrixkártya rákapcsolódott, akkor OLPError dobott
+             * A Slow módban ez a jelenség megszünt.
+             */
+            _session.Outputs[SelectedChannelName].Source.TransientResponse = DCPowerSourceTransientResponse.Slow;
 
 
             SetSense(sense);
@@ -273,11 +285,17 @@ namespace Knv.Instr.SMU.PXI4139
         {
             if (_disposed)
                 return;
-
-            if (disposing)
+            try
             {
-                _session?.Utility.Reset();
-                _session?.Dispose();
+                if (disposing)
+                {
+                    _session?.Utility.Reset();
+                    _session?.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
             }
             _disposed = true;
         }

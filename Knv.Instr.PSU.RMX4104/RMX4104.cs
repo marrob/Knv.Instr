@@ -49,6 +49,7 @@ namespace Knv.Instr.PSU.RMX4104
                 return;
             _resourceManager = new ResourceManager();
             _session = (MessageBasedSession)_resourceManager.Open(resourceName);
+            _session.TimeoutMilliseconds = 3000;
             Write("*RST;");
             Write(":SYST:ERR:ENAB;");
         }
