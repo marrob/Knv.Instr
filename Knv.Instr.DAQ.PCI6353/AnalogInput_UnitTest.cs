@@ -32,7 +32,7 @@ namespace Knv.Instr.DAQ.PCI6353
         {
             var result = AnalogInput.NormalSingleEndedMeasureStart(visaName:"Dev1", channel: "ai0", samples: 1000, sFreq: 1000000);
 
-            Instr.Tools.SignalToFile(data: result, "Sapling Test", "D:\\");
+            Tools.SignalToFile(data: result, "Sapling Test", "D:\\");
 
         }
     }

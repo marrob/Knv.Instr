@@ -54,7 +54,6 @@
     <Compile Include="IElectronicsLoad.cs" />
     <Compile Include="IPowerSupply.cs" />
     <Compile Include="Log.cs" />
-    <Compile Include="Tools.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

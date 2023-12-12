@@ -1,18 +1,20 @@
-﻿
-
-namespace Knv.Instr
+﻿namespace Knv.Instr.DAQ.USB6009
 {
+    using NationalInstruments.DAQmx;
     using System;
     using System.IO;
+    using System.Linq;
 
-    public class Tools
+    public static class Tools
     {
+        public static bool DeviceIsPresent(string visaName)
+        {
+            bool retval = false;
+            var devs = DaqSystem.Local.Devices;
+            retval = devs.Contains(visaName);
+            return retval;
+        }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="data"></param>
-        /// <param name="path"></param>
         public static void SignalToFile(double[] data, string title, string directory)
         {
             var dt = DateTime.Now;
@@ -28,9 +30,6 @@ namespace Knv.Instr
                     sw.WriteLine($"\"{value:#.000}\"");
             }
         }
-
-        //public static string GetTempPath ();
-
 
         private class Waveform
         {
