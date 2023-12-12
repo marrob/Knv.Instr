@@ -34,7 +34,7 @@ namespace Knv.Instr.PSU.HP6634A
     using NationalInstruments.Visa;
     using System;
 
-    public class HP6634A : Log, IDisposable, IPowerSupply
+    public class HP6634A : IDisposable, IPowerSupply
     { 
         bool _disposed = false;
         readonly IVisaSession _session = null;
@@ -99,16 +99,13 @@ namespace Knv.Instr.PSU.HP6634A
         public string Query(string request)
         {
             ((MessageBasedSession)_session).RawIO.Write($"{request}\r\n");
-            LogWriteLine($"Tx:{request}");     
             var response = ((MessageBasedSession)_session).RawIO.ReadString().Trim( new char[] {'\r', '\n', ' ' });
-            LogWriteLine($"Rx:{response}");
             return response;
         }
 
         public void Write(string request)
         {
             ((MessageBasedSession)_session).RawIO.Write($"{request}\r\n");
-            LogWriteLine($"Tx:{request}");
         }
 
         public void Dispose()
@@ -125,7 +122,6 @@ namespace Knv.Instr.PSU.HP6634A
             if (disposing)
             {
                 _session?.Dispose();
-                LogWriteLine("Instance disposed.");
             }
             _disposed = true;
 
