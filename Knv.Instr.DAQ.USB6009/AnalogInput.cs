@@ -1,20 +1,4 @@
-﻿/*
- * 
- * .NET Resources for NI Hardware and Software
- * https://www.ni.com/hu-hu/support/documentation/supplemental/13/national-instruments--net-support.html
- * 
- * NI-DAQmx
- * <Public Documents>\National Instruments\NI-DAQ\Documentation
- * Examples: 
- * Users\Public\Documents\National Instruments\NI-DAQ\Examples\DotNET<x.x>
- * Assembly NationalInstruments.Common:
- * C:\Program Files (x86)\National Instruments\Measurement Studio\DotNET\v4.0\AnyCPU\NationalInstruments.Common 19.1.40
- *
- * Assembly NationalInstruments.DAQmx
- * C:\Program Files (x86)\National Instruments\MeasurementStudioVS2012\DotNET\Assemblies (64-bit)\Current\NationalInstruments.DAQmx.dll
- *
- */
-namespace Knv.Instr.DAQ.USB6009
+﻿namespace Knv.Instr.DAQ.USB6009
 { 
     using NationalInstruments.DAQmx;
     using System;
@@ -23,22 +7,21 @@ namespace Knv.Instr.DAQ.USB6009
     {
         public static bool IsSimualtion { get; set; } = false;
 
-
         /// <summary>
         /// Beolvassa egy AI bemenetét
         /// A kártya pl lehet NI PCIe-6353
         /// </summary>
-        /// <param name="visaName">pl:Dev1 ezt a MAX-ban találod meg </param>
+        /// <param name="resourceName">pl:Dev1 ezt a MAX-ban találod meg </param>
         /// <param name="channel">pl: "ai0" </param>
         /// <returns></returns>
-        static double GetOneChannel(string visaName, string channel, AITerminalConfiguration terminalConfiguration)
+        static double GetOneChannel(string resourceName, string channel, AITerminalConfiguration terminalConfiguration)
         {
             double result = 0;
             if (!IsSimualtion)
             {
                 using (var myTask = new Task())
                 {
-                    string physicalChannel = $"{visaName}/{channel}";
+                    string physicalChannel = $"{resourceName}/{channel}";
                     myTask.AIChannels.CreateVoltageChannel(physicalChannel, ""/*$"AI:{channel}"*/, terminalConfiguration, -10, 10, AIVoltageUnits.Volts);
                     AnalogMultiChannelReader reader = new AnalogMultiChannelReader(myTask.Stream);
                     myTask.Control(TaskAction.Verify);
@@ -48,41 +31,41 @@ namespace Knv.Instr.DAQ.USB6009
             else
             {
                 Random rnd = new Random();
-                result = rnd.Next(-10, 10);
+                result = rnd.Next(-5, 5);
             }
             return result;
         }
 
-        public static double GetOneSingleEndedChannel(string visaName, string channel)
+        public static double GetOneSingleEndedChannel(string resourceName, string channel)
         {
-            return GetOneChannel(visaName, channel, AITerminalConfiguration.Rse);
+            return GetOneChannel(resourceName, channel, AITerminalConfiguration.Rse);
         }
 
         /// <summary>
         /// pl PCI-6353-nál AI0 (AI0+) és AI8(AI0-) 
         /// </summary>
-        /// <param name="visaName">pl:Dev1 ezt a MAX-ban találod meg.</param>
+        /// <param name="resourceName">pl:Dev1 ezt a MAX-ban találod meg.</param>
         /// <param name="channel">pl: "ai0</param>
         /// <returns></returns>
-        public static double GetOneDifferentialChannel(string visaName, string channel)
+        public static double GetOneDifferentialChannel(string resourceName, string channel)
         {
-            return GetOneChannel(visaName, channel, AITerminalConfiguration.Differential);
+            return GetOneChannel(resourceName, channel, AITerminalConfiguration.Differential);
         }
 
         /// <summary>
         /// Normal hasonlóan a szkópos méréseknél idítás után megál amint megteleik a memória.
         /// </summary>
-        /// <param name="visaName"></param>
+        /// <param name="resourceName"></param>
         /// <param name="channel"></param>
         /// <param name="samples"></param>
-        /// <param name="sFreq"></param>
+        /// <param name="sFreq">USB-6009-nél max 48000Hz lehet.</param>
         /// <returns></returns>
-        public static double[] NormalMeasureStart(string visaName, string channel, int samples, int sFreq, AITerminalConfiguration terminalConfiguration)
+        public static double[] NormalMeasureStart(string resourceName, string channel, int samples, int sFreq, AITerminalConfiguration terminalConfiguration)
         {
             using (var myTask = new Task())
             {
-                string physicalChannel = $"{visaName}/{channel}";
-                myTask.AIChannels.CreateVoltageChannel(physicalChannel,"" /*$"AI:{channel}"*/, AITerminalConfiguration.Rse, -10, 10, AIVoltageUnits.Volts);
+                string physicalChannel = $"{resourceName}/{channel}";
+                myTask.AIChannels.CreateVoltageChannel(physicalChannel,"", AITerminalConfiguration.Rse, -5, 5, AIVoltageUnits.Volts);
                 myTask.Timing.ConfigureSampleClock("", sFreq, SampleClockActiveEdge.Rising, SampleQuantityMode.FiniteSamples, samples);
                 myTask.Control(TaskAction.Verify);
                 var reader = new AnalogSingleChannelReader(myTask.Stream);
@@ -96,9 +79,9 @@ namespace Knv.Instr.DAQ.USB6009
             }
         }
 
-        public static double[] NormalSingleEndedMeasureStart(string visaName, string channel, int samples, int sFreq)
+        public static double[] NormalSingleEndedMeasureStart(string resourceName, string channel, int samples, int sFreq)
         {
-            return NormalMeasureStart(visaName, channel, samples, sFreq, AITerminalConfiguration.Rse);
+            return NormalMeasureStart(resourceName, channel, samples, sFreq, AITerminalConfiguration.Rse);
         }
     }
 }

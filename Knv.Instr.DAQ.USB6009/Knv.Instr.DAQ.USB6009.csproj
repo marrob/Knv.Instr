@@ -43,13 +43,13 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="NationalInstruments.Common, Version=19.1.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+    <Reference Include="NationalInstruments.Common, Version=17.5.40.49153, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.Common.dll</HintPath>
     </Reference>
-    <Reference Include="NationalInstruments.DAQmx, Version=20.1.45.49152, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=x86">
+    <Reference Include="NationalInstruments.DAQmx, Version=19.0.45.2, Culture=neutral, PublicKeyToken=4febd62461bf11a4, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NationalInstruments.DAQmx(x86) 20.1.45.49152\NationalInstruments.DAQmx.dll</HintPath>
+      <HintPath>..\lib\NationalInstruments.DAQmx(x64) 19.0.45\NationalInstruments.DAQmx.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.13.3.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\packages\NUnit.3.13.3\lib\net45\nunit.framework.dll</HintPath>
@@ -67,17 +67,17 @@
     <Compile Include="AnalogInput.cs" />
     <Compile Include="Basics_UnitTest.cs" />
     <Compile Include="AnalogOutput.cs" />
-    <Compile Include="Math_UnitTest.cs" />
+    <Compile Include="SineGenBackgroundWorker.cs" />
     <Compile Include="Tools.cs" />
-    <Compile Include="AnalogOutput_UnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AnalogSignalGenSoftTiming.cs" />
-    <Compile Include="SignalGen_MultiAnalogOutput_UnitTest.cs" />
-    <Compile Include="AnalogSignalGen_UnitTest.cs" />
+    <Compile Include="SineGenSwTiming.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -2,8 +2,6 @@
 namespace Knv.Instr.DAQ.USB6009
 {
     using NationalInstruments.DAQmx;
-    using System;
-    using System.Linq;
 
     static public class AnalogOutput
     {
@@ -12,8 +10,8 @@ namespace Knv.Instr.DAQ.USB6009
 
         /// <summary>
         /// Beállít egy feszültséget egy analóg kimeneten
-        /// Kártya pl lehet NI PCIe-6353, ezen kettő db Analog Out csatorna van: ao0 és ao1
-        /// A beállított feszültség a kötkező beállításig vagy újraidnitásig a kiementen van! 
+        /// Kártya pl lehet NI PCIe-6353 vagy USB6009, ezeken kettő db Analog Out csatorna van: ao0 és ao1
+        /// A beállított feszültség a következő beállításig vagy újraidnitásig a kiementen van! 
         /// </summary>
         /// <param name="resourceName"></param>
         /// <param name="channel"></param>
@@ -26,7 +24,7 @@ namespace Knv.Instr.DAQ.USB6009
             using (var myTask = new Task())
             {
                 string physicalChannel = $"{resourceName}/{channel}";
-                myTask.AOChannels.CreateVoltageChannel(physicalChannel, "aoChannel", -10, 10, AOVoltageUnits.Volts);
+                myTask.AOChannels.CreateVoltageChannel(physicalChannel, "aoChannel", 0, 5, AOVoltageUnits.Volts);
                 var writer = new AnalogSingleChannelWriter(myTask.Stream);
                 writer.WriteSingleSample(true, voltage);
             }
