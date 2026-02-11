@@ -44,6 +44,36 @@ namespace Knv.Instr.DMM.KEI6500
             }
         }
 
+
+        [Test]
+        public void ConfigurationTest()
+        {
+            double measValue = 0;
+
+            using (var dmm = new KEI6500(VISA_NAME, simulation: false))
+            {
+                
+                var resp = dmm.Identify();
+                Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS"));
+
+                dmm.Config("DCV", rangeName: "1");
+                measValue = dmm.Read();
+                Assert.IsTrue(-0.5 < measValue && measValue < 0.5);
+
+
+                dmm.Config("DCV", rangeName: "100e-3");
+                measValue = dmm.Read();
+                Assert.IsTrue(-0.5 < measValue && measValue < 0.5);
+
+
+                dmm.Config("DCV", rangeName: "1000");
+                measValue = dmm.Read();
+                Assert.IsTrue(-0.5 < measValue && measValue < 0.5);
+
+                dmm.LogSave("c:\\Users\\Public\\Documents\\", "KEI6500");
+            }
+        }
+
         [Test]
         public void WriteTestToDiaplay()
         {

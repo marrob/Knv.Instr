@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3324050A-EA3B-49C3-B028-CBDCE2FE6AC0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Knv.Instr.DMM.KEI2100</RootNamespace>
-    <AssemblyName>Knv.Instr.DMM.KEI2100</AssemblyName>
+    <RootNamespace>Knv.Instr.DMM.KEI6500</RootNamespace>
+    <AssemblyName>Knv.Instr.DMM.KEI6500</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,9 +44,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\lib\Ivi.Visa(amd64) 2.0.50727\Ivi.Visa.dll</HintPath>
     </Reference>
+    <Reference Include="NationalInstruments.Common, Version=19.0.40.49152, Culture=neutral, PublicKeyToken=dc6ad606294fc298, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\NationalInstruments.Common(x86) 19.1.40\NationalInstruments.Common.dll</HintPath>
+    </Reference>
     <Reference Include="NationalInstruments.Visa, Version=19.0.0.49152, Culture=neutral, PublicKeyToken=2eaa5af0834e221d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\NationalInstruments.Visa(amd64) 4.0.30319\NationalInstruments.Visa.dll</HintPath>
+      <HintPath>..\lib\NiVisa 19.0.0.49152\NationalInstruments.Visa.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=3.13.3.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\packages\NUnit.3.13.3\lib\net45\nunit.framework.dll</HintPath>

@@ -11,12 +11,14 @@ namespace Knv.Instr.DMM.KEI6500
     {
         public Dictionary<string, string[]> Ranges = new Dictionary<string, string[]>()
         {
-            { "DCV", new string[]{ "100mV", "1V", "10V", "100V", "1000V" } },
+            { "DCV", new string[]{ "100e-3", "1", "10", "100", "1000" } },
+            /*
             { "2WR", new string[]{ "1R", "10R", "100R", "1K00", "100K", "1M00", "10M0", "100M" } },
             { "4WR", new string[]{ "1R", "10R", "100R", "1K00", "100K", "1M00", "10M0", "100M" } },
             { "DCC", new string[]{ "10uA", "100uA", "1mA", "10mA", "100mA", "1A", "3A", "10A" } },
             { "ACV", new string[]{ "100mV", "1V", "10V", "100V", "750V" } },
-            { "ACC", new string[]{ "100uA", "1mA", "10mA", "100mA", "1A", "3A", "10A" } },       
+            { "ACC", new string[]{ "100uA", "1mA", "10mA", "100mA", "1A", "3A", "10A" } },      
+            */
         };
 
 
@@ -56,17 +58,11 @@ namespace Knv.Instr.DMM.KEI6500
             {
                 case "DCV":
                     {
-                        Write($"CONF:VOLT:DC {rangeName}");
-                        Write($"SENS:VOLT:RANG:AUTO OFF");
-                        if (digits == 6.5)
-                        {
-                            // 000.0000 range: 100mV ez a  6.5digit mód
-                            // 099.9999  
-                            // 100.0000
-                            Write($"SENS:VOLT:RES 0.1uV");
-                        }
+                        //Fix: 2026.02.11
+                        Write($"SENS:VOLT:RANG {rangeName}");
                         break;
                     }
+                    /*
                 case "DCC":
                     {
                         Write($"CONF:CURR:DC {rangeName}");
@@ -91,6 +87,7 @@ namespace Knv.Instr.DMM.KEI6500
                         Write($"SENS:FRES:RANG:AUTO OFF");
                         break;
                     }
+                    */
             }
         }
 
@@ -107,7 +104,10 @@ namespace Knv.Instr.DMM.KEI6500
         public double Read()
         {
             if (!_simulation)
-                return double.Parse(Query("READ?"));
+            {
+                string strValue = Query("READ?");
+                return double.Parse(strValue);
+            }
             else
                 return new Random().NextDouble();
         }
