@@ -18,8 +18,8 @@ namespace Knv.Instr.DMM.KEI6500
                 try
                 {
                     var resp = dmm.Identify();
-                    Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS INC."));
-                    Assert.IsTrue(resp.Contains("MODEL 6500"));
+                    Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS"));
+                    Assert.IsTrue(resp.Contains("DMM6500"));
                 }
                 finally
                 {
@@ -35,7 +35,7 @@ namespace Knv.Instr.DMM.KEI6500
             using (var dmm = new KEI6500(VISA_NAME, simulation: false))
             {
                 var resp = dmm.Identify();
-                Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS INC."));
+                Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS"));
 
                 dmm.Config("DCV", rangeName: "1V");
                 var measValue = dmm.Read();
@@ -52,11 +52,11 @@ namespace Knv.Instr.DMM.KEI6500
                 try
                 {
                     var resp = dmm.Identify();
-                    Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS INC."));
+                    Assert.IsTrue(resp.Contains("KEITHLEY INSTRUMENTS"));
 
                     for (int i = 0; i < 100; i++)
                     {
-                        dmm.WriteTextToDisplay($"MIKI TE FASZ {i}");
+                        dmm.WriteTextToDisplay($"MIKI TE FASZ!");
                         Thread.Sleep(20);
                     }
                 }

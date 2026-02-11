@@ -120,8 +120,9 @@ namespace Knv.Instr.DMM.KEI6500
 
         public void WriteTextToDisplay(string text)
         {
-            Write($"DISP:TEXT:CLE");
-            Write($"DISP:TEXT \"{text}\"");
+            Write($"DISP:CLE");
+            Write($"DISP:SCR SWIPE_USER");
+            Write($"DISP:USER1:TEXT \"{text}\"");
         }
 
         public string GetErrors()
