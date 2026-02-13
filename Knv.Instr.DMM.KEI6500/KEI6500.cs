@@ -167,6 +167,5 @@ namespace Knv.Instr.DMM.KEI6500
             _disposed = true;
 
         }
-
     }
 }

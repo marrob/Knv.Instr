@@ -55,6 +55,13 @@ namespace Knv.Instr.DAC.M9185A
             return retval ;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="channelIndex">channelIndex = 0 az fizikailag az 1-es csatorna </param>
+        /// <param name="value"></param>
+        /// <param name="enable"></param>
+        /// <exception cref="ArgumentException"></exception>
         public void VoltageOutputConfig(int channelIndex, double value, bool enable = true)
         {
             if (channelIndex > CHANNELS - 1)
