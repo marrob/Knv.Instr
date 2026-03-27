@@ -9,8 +9,8 @@ namespace Knv.Instr.DMM.KEI6500
     [TestFixture]
     internal class KEI6500_DMM_UnitTest
     {
-        string VISA_NAME = "KEI6500";
-        string LOG_PATH = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments); //c:\\Users\\Public\\Documents\\
+        readonly string VISA_NAME = "KEI6500";
+        readonly string LOG_PATH = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments); //c:\\Users\\Public\\Documents\\
 
         [Test]
         public void Identify()
@@ -29,6 +29,7 @@ namespace Knv.Instr.DMM.KEI6500
                 }
 
             }
+         
         }
 
         [Test]

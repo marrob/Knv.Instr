@@ -7,10 +7,8 @@ namespace Knv.Instr.DMM.KEI6500
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Threading.Tasks;
-    using static NUnit.Framework.Constraints.Tolerance;
 
-    public class KEI6500 : Log, IDigitalMultiMeter, IDisposable
+    public class KEI6500 : Log, /*IDigitalMultiMeter,*/ IDisposable
     {
         public Dictionary<string, string[]> Ranges = new Dictionary<string, string[]>()
         {
@@ -26,13 +24,18 @@ namespace Knv.Instr.DMM.KEI6500
 
 
         bool _disposed = false;
-        readonly bool _simulation = false;
-        readonly ResourceManager _resourceManager;
-        readonly MessageBasedSession _session;
+        bool _simulation = false;
+        ResourceManager _resourceManager;
+        MessageBasedSession _session;
 
         /// <summary>
-        /// KEI2100
+        /// TestExec kompatiblitáshoz
         /// </summary>
+        public KEI6500()
+        {
+            
+        }
+
         public KEI6500(string visaName, bool simulation)
         {
             _simulation = simulation;
@@ -45,7 +48,25 @@ namespace Knv.Instr.DMM.KEI6500
             }
         }
 
-        public void Config(string function, string rangeName, double digits, int powerlineFreq)
+        /// <summary>
+        /// Ez az Open a TesTexec miatt van.
+        /// </summary>
+        public void Open(string visaName, bool simulation)
+        {
+            _simulation = simulation;
+            if (_resourceManager == null)
+            {
+                if (!_simulation)
+                {
+                    _resourceManager = new ResourceManager();
+                    _session = (MessageBasedSession)_resourceManager.Open(visaName);
+                    LogWriteLine("Instance created.");
+                    Write("*RST;*CLS");
+                }
+            }
+        }
+
+        public void Config(string function, string rangeName)
         {
             string[] rangeItems;
             if (!Ranges.TryGetValue(function, out rangeItems))
@@ -56,8 +77,6 @@ namespace Knv.Instr.DMM.KEI6500
 
             if (_simulation)
                 return;
-
-             
 
             switch (function)
             {
@@ -145,21 +164,12 @@ namespace Knv.Instr.DMM.KEI6500
             }
         }
 
-        public void Config(string function, string rangeName)
-        {
-            Config(function, rangeName, 4.5, 50);
-        }
-
-        public void Config(string function, string rangeName, double digits)
-        {
-            Config(function, rangeName, digits, 50);
-        }
-
         public double Read()
         {
             if (!_simulation)
             {
                 string strValue = Query("READ?");
+                //string strValue = "0.555";
                 return double.Parse(strValue);
             }
             else
@@ -216,10 +226,11 @@ namespace Knv.Instr.DMM.KEI6500
             {
                 _resourceManager?.Dispose();
                 _session?.Dispose();
+                _resourceManager = null;
+                _session = null;
                 LogWriteLine("Instance disposed.");
             }
             _disposed = true;
-
         }
     }
 }
